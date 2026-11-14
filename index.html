@@ -1022,7 +1022,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
       <div class="cl-eyebrow">UPJV SPORT · Classé</div>
       <h1>Football</h1>
       <div class="cl-sub">Inscription des équipes</div>
-      <p class="cl-lead">Choisis ta catégorie, donne le nom de ton équipe et ajoute tes joueurs avec leur nom et leur prénom.</p>
+      <p class="cl-lead">Le classé se joue en foot à 5 : donne le nom de ton équipe et ajoute tes joueurs avec leur nom et leur prénom.</p>
       <div class="cl-lock">
         <p class="cl-lock-title">Réservé aux membres</p>
         <p>Pour inscrire ton équipe aux matchs classés, crée ton compte ou connecte-toi.</p>
@@ -1033,9 +1033,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
         <div class="cl-legend">Catégorie</div>
         <div class="cl-cats">
-          <label class="cl-card"><input type="radio" name="categorie" value="Foot à 5" required><span class="cl-card-body"><span class="cl-num">5</span><span class="cl-lab">Foot à 5</span></span></label>
-          <label class="cl-card"><input type="radio" name="categorie" value="Foot à 8" required><span class="cl-card-body"><span class="cl-num">8</span><span class="cl-lab">Foot à 8</span></span></label>
-          <label class="cl-card"><input type="radio" name="categorie" value="Foot à 11" required><span class="cl-card-body"><span class="cl-num">11</span><span class="cl-lab">Foot à 11</span></span></label>
+          <label class="cl-card"><input type="radio" name="categorie" value="Foot à 5" required checked><span class="cl-card-body"><span class="cl-num">5</span><span class="cl-lab">Foot à 5</span></span></label>
         </div>
         <label class="cl-field">Nom de l'équipe
           <input type="text" name="equipe" placeholder="Ex. : Les Licornes" required autocomplete="off">
@@ -1976,7 +1974,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
       // Tableaux d'affichage : équipes validées dans equipes.json (dépôt GitHub, sinon copie à côté de la page)
       // + les inscriptions envoyées depuis ce navigateur, affichées « en attente » jusqu'à leur validation.
       const TEAMS_URLS = ["https://raw.githubusercontent.com/valerygaotte-lab/upjv-sport/main/equipes.json", "equipes.json"];
-      const POOLS = { foot: ["Foot à 5", "Foot à 8", "Foot à 11"], padel: ["1V1", "2V2"] };
+      const POOLS = { foot: ["Foot à 5"], padel: ["1V1", "2V2"] };
       const POOL_LABEL = { "1V1": "Tournoi 1 contre 1", "2V2": "Tournoi 2 contre 2" };
       const norm = (t) => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
       let teams = { foot: [], padel: [] };
@@ -2113,6 +2111,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         $("foot-hint").hidden = n > 0; renumber(fr);
       }
       ff.querySelectorAll('input[name="categorie"]').forEach((i) => i.addEventListener("change", () => footRows(SIZE[i.value])));
+      footRows(5); // le classé foot se joue uniquement à 5
       ff.addEventListener("submit", (e) => {
         e.preventDefault();
         if (!fr.children.length) { $("foot-status").className = "cl-status err"; $("foot-status").textContent = "Choisis une catégorie pour ajouter tes joueurs."; return; }
@@ -2250,7 +2249,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
   const fv = document.getElementById("foot-venues");
   if (fv) {
     fv.append(el("p", "venue-note", NOTE));
-    const c = el("a", "venue-cta", "Jouer en classé au foot"); c.href = "#classe-foot"; fv.append(c);
+    const c = el("a", "venue-cta", "Jouer en classé au foot à 5"); c.href = "#classe-foot"; fv.append(c);
   }
 
   // Compteurs sur les carrés (Sport, Foot, Autres sports)
