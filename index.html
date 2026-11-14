@@ -785,6 +785,28 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
 #classe-padel .cl-form input[type="text"]:focus { border-color: #d4ff2a; }
 #classe-padel .cl-submit { color: #04102c; background: #d4ff2a; font-size: 19px; }
 @media (max-width: 900px) { .cl-inner { margin-left: 0; } }
+/* Classé foot : mon équipe et adversaires */
+.cl-team { margin-bottom: 28px; }
+.cl-team-box { padding: 30px 34px; background: rgba(4, 8, 36, 0.72); border: 1px solid rgba(255,255,255,0.18); border-top: 3px solid #2bd9ff; backdrop-filter: blur(8px); color: #dfe7f5; }
+.cl-team-box + .cl-team-box { margin-top: 22px; }
+.cl-team-box h2 { margin: 0 0 6px; font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #2bd9ff; }
+.cl-team-name { margin: 0 0 14px; font-size: clamp(26px, 4vw, 38px); font-weight: 900; text-transform: uppercase; color: white; line-height: 1.1; }
+.cl-team-state { display: inline-block; margin-left: 12px; padding: 5px 12px; border: 1px solid currentColor; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; vertical-align: middle; color: #ffd24d; }
+.cl-team-state.ok { color: #5df2a0; }
+.cl-team-members { display: flex; flex-wrap: wrap; gap: 8px 10px; margin: 0 0 14px; padding: 0; list-style: none; }
+.cl-team-members li { padding: 8px 14px; background: rgba(255,255,255,0.08); font-size: 15px; font-weight: 600; color: white; }
+.cl-team-members li.cap::after { content: " · capitaine"; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #2bd9ff; }
+.cl-team-note { margin: 0; font-size: 15px; line-height: 1.55; color: #c9d4ea; }
+.cl-opps { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin-top: 18px; }
+.cl-opp { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; background: rgba(255,255,255,0.07); border-left: 4px solid #c24bff; }
+.cl-opp b { font-size: 18px; font-weight: 900; text-transform: uppercase; color: white; }
+.cl-opp small { font-size: 13px; color: #aeb9d0; }
+.cl-opp button { margin-top: 10px; padding: 11px 16px; border: 0; border-radius: 24px; background: linear-gradient(90deg, #2bd9ff, #c24bff); color: #04102c; font: inherit; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
+.cl-opp button:disabled { background: rgba(255,255,255,0.14); color: #c9d4ea; cursor: default; }
+.cl-opp .cl-opp-msg { min-height: 1em; font-size: 12px; color: #ffd0d6; }
+#form-foot .cl-row.mail { grid-template-columns: 34px 1fr; }
+#form-foot .cl-row.mail input { width: 100%; box-sizing: border-box; padding: 14px 16px; color: white; font: inherit; font-size: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.3); }
+#form-foot .cl-row.mail input:focus { outline: 0; background: rgba(255,255,255,0.14); border-color: #2bd9ff; }
 @media (max-width: 700px) {
   .cl { padding: 110px 6% 90px; }
   .cl-cats { gap: 10px; }
@@ -1037,28 +1059,21 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
       <div class="cl-eyebrow">UPJV SPORT · Classé</div>
       <h1>Football</h1>
       <div class="cl-sub">Inscription des équipes</div>
-      <p class="cl-lead">Le classé se joue en foot à 5 : donne le nom de ton équipe et ajoute tes joueurs avec leur nom et leur prénom.</p>
+      <p class="cl-lead">Le classé se joue en foot à 5 : donne le nom de ton équipe et ajoute tes quatre coéquipiers grâce à l'adresse e-mail de leur compte. Tu es le capitaine.</p>
       <div class="cl-lock">
         <p class="cl-lock-title">Réservé aux membres</p>
         <p>Pour inscrire ton équipe aux matchs classés, crée ton compte ou connecte-toi.</p>
         <div class="cl-lock-btns"><a href="#" class="cl-submit" data-open="modal-signup">S'inscrire</a><a href="#" class="cl-lock-alt" data-open="modal-login">J'ai déjà un compte</a></div>
       </div>
-      <form class="cl-form" id="form-foot" name="inscription-foot" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="inscription-foot">
-        <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
-        <div class="cl-legend">Catégorie</div>
-        <div class="cl-cats">
-          <label class="cl-card"><input type="radio" name="categorie" value="Foot à 5" required checked><span class="cl-card-body"><span class="cl-num">5</span><span class="cl-lab">Foot à 5</span></span></label>
-        </div>
+      <div class="cl-team" id="team-panel" hidden aria-live="polite"></div>
+      <form class="cl-form" id="form-foot" name="inscription-foot" novalidate>
         <label class="cl-field">Nom de l'équipe
-          <input type="text" name="equipe" placeholder="Ex. : Les Licornes" required autocomplete="off">
+          <input type="text" name="equipe" placeholder="Ex. : Les Licornes" required autocomplete="off" maxlength="40">
         </label>
-        <div class="cl-legend">Joueurs (nom et prénom)</div>
-        <p class="cl-hint" id="foot-hint">Choisis d'abord une catégorie pour afficher les lignes joueurs.</p>
+        <div class="cl-legend">Tes quatre coéquipiers</div>
+        <p class="cl-hint" id="foot-hint">Saisis l'adresse e-mail utilisée par chaque joueur pour créer son compte sur le site. Chacun recevra un e-mail de confirmation.</p>
         <div id="foot-rows"></div>
-        <input type="hidden" name="joueurs" id="foot-joueurs">
-        <input type="hidden" name="compte" class="cl-account">
-        <label class="cl-check"><input type="checkbox" name="prerequis" value="Tous les joueurs ont déjà joué au moins un match de five" required><span>Je confirme que <b>chaque joueur</b> de l'équipe a déjà joué <b>au moins un match de five</b> (obligatoire pour les matchs classés).</span></label>
+        <label class="cl-check"><input type="checkbox" name="prerequis" value="ok" required><span>Je confirme que <b>chaque joueur</b> de l'équipe a déjà joué <b>au moins un match de five</b> (obligatoire pour les matchs classés).</span></label>
         <button type="submit" class="cl-submit">Inscrire mon équipe</button>
         <div class="cl-status" id="foot-status" role="status"></div>
       </form>
@@ -1143,7 +1158,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
     <div class="sports-head">
       <p class="sports-eyebrow">UPJV SPORT · Sport</p>
       <h1 id="sport-detail-title">Sport</h1>
-      <p id="sport-detail-soon">Cette page est en préparation : son contenu arrive bientôt.</p>
+      <p id="sport-detail-soon">Les lieux de cette discipline seront publiés prochainement.</p>
     </div>
     <div class="sports-grid autres-grid" id="autres-extra" hidden>
       <a href="#sport-natation" class="sport-tile" style="--tile-img: url('images/sport-natation.jpg')"><h2>Natation</h2></a>
@@ -1344,7 +1359,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
           <p class="gym-cond">Abonnement.</p>
         </article>
         </div>
-        <p class="mc-note">Adresses relevées sur les sites officiels des enseignes. Tarifs, horaires et accès : à vérifier auprès de chaque salle.</p>
+        <p class="mc-note">Informations indicatives : tarifs, horaires et conditions d'accès peuvent varier. Merci de les confirmer auprès de chaque salle avant de vous déplacer.</p>
       </div>
 
       <div class="mc-pane" id="mc-duo" hidden>
@@ -1528,7 +1543,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         document.querySelectorAll("#foot-venues .venue-list").forEach((l) => { l.hidden = !footSub || "foot-" + l.dataset.foot !== key; });
         const soon = document.getElementById("sport-detail-soon");
         soon.hidden = isMuscu || key === "foot" || footSub;
-        soon.textContent = isAutres ? "Choisis ta discipline. D'autres sports arriveront bientôt." : "Cette page est en préparation : son contenu arrive bientôt.";
+        soon.textContent = isAutres ? "Choisis ta discipline pour découvrir où la pratiquer à Amiens." : "Les lieux de cette discipline seront publiés prochainement.";
         if (window.UPJV_sportPage) window.UPJV_sportPage(key, soon);
         const back = document.getElementById("sport-detail-back"); // retour vers la page d'où l'on vient
         back.setAttribute("href", sub ? "#sport-autres" : footSub ? "#sport-foot" : "#sports"); back.textContent = sub ? "Autres sports" : footSub ? "Foot" : "Tous les sports";
@@ -1576,7 +1591,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
     // 1) Le fichier tel qu'il est dans le dépôt GitHub (branche main) : toujours la dernière version écrite par le workflow,
     //    quel que soit l'hébergeur du site (Netlify, GitHub Pages, fichier ouvert en local…). Le dépôt doit rester public.
     // 2) En secours, evenements.json à côté de la page (copie publiée avec le site). La version la plus récente des deux est affichée.
-    const EVENTS_URL = "https://raw.githubusercontent.com/valerygaotte-lab/upjv-sport/main/evenements.json";
+    const EVENTS_URL = "https://raw.githubusercontent.com/upjvsport/upjv-sport/main/evenements.json";
     const EVENTS_SOURCES = [
       { label: "dépôt GitHub", url: EVENTS_URL },
       IN_PREVIEW ? null : { label: "page actuelle", url: urlOf("evenements.json", window.location.href) }
@@ -1831,6 +1846,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
       const SUPABASE_ANON_KEY = "sb_publishable_b4_VUuvieW-TkhxDpiQPPg_wNTRhNzQ"; // clé publique (publishable), sans danger dans la page
       const sb = SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
       if (!sb) console.warn("[UPJV SPORT · comptes] Service de comptes non configuré (SUPABASE_URL / SUPABASE_ANON_KEY vides) ou bibliothèque non chargée.");
+      window.UPJV_SB = sb;
       const say = (el, cls, txt) => { el.className = "modal-status " + cls; el.textContent = txt; };
       const FR_ERRORS = [
         [/already registered|already exists/i, "Un compte existe déjà avec cette adresse e-mail : connecte-toi."],
@@ -1848,6 +1864,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         const meta = (user && user.user_metadata) || {};
         window.UPJV_USER = user || null;
         document.body.classList.toggle("logged-in", !!user);
+        document.dispatchEvent(new CustomEvent("upjv-auth"));
         document.querySelectorAll(".cl-account").forEach((i) => { i.value = user ? user.email : ""; });
         if (user) {
           btn.textContent = "Mon compte" + (meta.prenom ? " · " + meta.prenom : ""); btn.dataset.open = "modal-account";
@@ -1957,7 +1974,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
       }
       // Tableaux d'affichage : équipes validées dans equipes.json (dépôt GitHub, sinon copie à côté de la page)
       // + les inscriptions envoyées depuis ce navigateur, affichées « en attente » jusqu'à leur validation.
-      const TEAMS_URLS = ["https://raw.githubusercontent.com/valerygaotte-lab/upjv-sport/main/equipes.json", "equipes.json"];
+      const TEAMS_URLS = ["https://raw.githubusercontent.com/upjvsport/upjv-sport/main/equipes.json", "equipes.json"];
       const POOLS = { foot: ["Foot à 5"], padel: ["1V1", "2V2"] };
       const POOL_LABEL = { "1V1": "Tournoi 1 contre 1", "2V2": "Tournoi 2 contre 2" };
       const norm = (t) => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
@@ -2069,6 +2086,13 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
             break;
           } catch (e) { console.warn("[UPJV SPORT · Classé] Lecture impossible : " + url, e); }
         }
+        if (window.UPJV_SB) {
+          try {
+            const { data } = await window.UPJV_SB.rpc("public_teams");
+            const have = new Set(teams.foot.map((t) => norm(t.equipe || t.nom)));
+            (data || []).forEach((t) => { if (!have.has(norm(t.name))) teams.foot.push({ categorie: t.category, equipe: t.name }); });
+          } catch (e) { console.warn("[UPJV SPORT · Classé] Équipes validées indisponibles", e); }
+        }
         board("foot"); board("padel");
       }
       board("foot"); board("padel"); loadTeams();
@@ -2087,22 +2111,79 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         } finally { btn.disabled = false; }
       }
 
-      // FOOT : 5, 8 ou 11 lignes selon la catégorie, avec ajout et retrait de joueurs
-      const ff = $("form-foot"), fr = $("foot-rows"), SIZE = { "Foot à 5": 5, "Foot à 8": 8, "Foot à 11": 11 };
-      function footRows(n) {
-        const old = [...fr.children].map((r) => [...r.querySelectorAll("input")].map((i) => i.value));
-        fr.replaceChildren(); for (let i = 0; i < n; i++) { const r = row(i + 1); const v = old[i]; if (v) { const ins = r.querySelectorAll("input"); ins[0].value = v[0]; ins[1].value = v[1]; } fr.append(r); }
-        $("foot-hint").hidden = n > 0; renumber(fr);
+      // FOOT : inscription par e-mail des coéquipiers, équipe, adversaires (Supabase)
+      const ff = $("form-foot"), fr = $("foot-rows"), fs = $("foot-status"), panel = $("team-panel"), SB = window.UPJV_SB;
+      const tx = (tag, cls, t) => { const e = document.createElement(tag); if (cls) e.className = cls; if (t != null) e.textContent = t; return e; };
+      for (let i = 0; i < 4; i++) {
+        const r = tx("div", "cl-row mail"), n = tx("span", "cl-n", String(i + 2)), inp = document.createElement("input");
+        inp.type = "email"; inp.required = true; inp.placeholder = "E-mail du compte du joueur " + (i + 2); inp.autocomplete = "off"; inp.autocapitalize = "none"; inp.setAttribute("aria-label", "E-mail du joueur " + (i + 2));
+        r.append(n, inp); fr.append(r);
       }
-      ff.querySelectorAll('input[name="categorie"]').forEach((i) => i.addEventListener("change", () => footRows(SIZE[i.value])));
-      footRows(5); // le classé foot se joue uniquement à 5
-      ff.addEventListener("submit", (e) => {
+      const say2 = (el, cls, t) => { el.className = "cl-status " + cls; el.textContent = t; };
+      const dbError = (err) => {
+        const m = (err && err.message) || "";
+        if (/duplicate key|teams_name_uq/i.test(m)) return "Ce nom d'équipe est déjà pris : choisis-en un autre.";
+        if (/failed to fetch|network/i.test(m)) return "Connexion impossible : vérifie ta connexion Internet.";
+        return m || "Une erreur est survenue : réessaie dans un instant.";
+      };
+      async function fnError(err) {
+        try { const j = await err.context.json(); if (j && j.error) return j.error; } catch (e) {}
+        return "Envoi impossible pour le moment : réessaie dans un instant.";
+      }
+      async function loadMyTeam() {
+        if (!SB || !window.UPJV_USER) { panel.hidden = true; ff.hidden = false; return; }
+        const { data: team, error } = await SB.rpc("my_team");
+        if (error) { panel.hidden = true; ff.hidden = false; console.warn("[Classé] my_team", error); return; }
+        if (!team) { panel.hidden = true; ff.hidden = false; return; }
+        ff.hidden = true; panel.hidden = false;
+        const ok = team.status === "validated";
+        const box = tx("div", "cl-team-box"), h = tx("h2", "", "Mon équipe"), nm = tx("p", "cl-team-name", team.name);
+        nm.append(tx("span", "cl-team-state" + (ok ? " ok" : ""), ok ? "validée" : "en attente de validation"));
+        const ul = tx("ul", "cl-team-members");
+        (team.members || []).forEach((m) => ul.append(tx("li", m.captain ? "cap" : "", (m.prenom + " " + (m.nom || "").toUpperCase()).trim())));
+        box.append(h, nm, ul, tx("p", "cl-team-note", ok ? "Ton équipe est validée : tu peux proposer un match aux équipes ci-dessous." : "L'équipe UPJV SPORT vérifie ton inscription. Dès qu'elle est validée, tu pourras proposer des matchs aux autres équipes."));
+        const out = [box];
+        if (ok) {
+          const ob = tx("div", "cl-team-box"); ob.append(tx("h2", "", "Contre qui jouer"));
+          const { data: opps, error: e2 } = await SB.rpc("opponents");
+          if (e2) ob.append(tx("p", "cl-team-note", "Impossible de charger les équipes pour le moment."));
+          else if (!opps || !opps.length) ob.append(tx("p", "cl-team-note", "Aucune autre équipe validée pour l'instant. Reviens bientôt : les équipes adverses apparaîtront ici."));
+          else {
+            const grid = tx("div", "cl-opps");
+            opps.forEach((o) => {
+              const card = tx("div", "cl-opp"), btn = tx("button", "", o.already_asked ? "Proposition envoyée" : "Proposer un match"), msg = tx("span", "cl-opp-msg");
+              btn.type = "button"; btn.disabled = !!o.already_asked;
+              btn.addEventListener("click", async () => {
+                btn.disabled = true; msg.textContent = "";
+                const { error: e3 } = await SB.functions.invoke("send-team-mails", { body: { type: "challenge", from_team: team.id, to_team: o.id } });
+                if (e3) { btn.disabled = false; msg.textContent = await fnError(e3); return; }
+                btn.textContent = "Proposition envoyée"; msg.textContent = "Le capitaine de " + o.name + " a reçu ta proposition par e-mail.";
+              });
+              card.append(tx("b", "", o.name), tx("small", "", o.captain_prenom ? "Capitaine : " + o.captain_prenom : "Équipe validée"), btn, msg);
+              grid.append(card);
+            });
+            ob.append(grid);
+          }
+          out.push(ob);
+        }
+        panel.replaceChildren(...out);
+      }
+      document.addEventListener("upjv-auth", loadMyTeam); loadMyTeam();
+      ff.addEventListener("submit", async (e) => {
         e.preventDefault();
-        if (!fr.children.length) { $("foot-status").className = "cl-status err"; $("foot-status").textContent = "Choisis une catégorie pour ajouter tes joueurs."; return; }
-        if (!ff.prerequis.checked) { $("foot-status").className = "cl-status err"; $("foot-status").textContent = "Pour jouer en classé, chaque joueur doit avoir déjà fait au moins un match de five : coche la case de confirmation."; return; }
-        $("foot-joueurs").value = lines(fr);
-        const cat = ff.querySelector('input[name="categorie"]:checked').value, name = ff.equipe.value.trim();
-        send(ff, $("foot-status"), ff.querySelector(".cl-submit"), () => { footRows(0); addPending("foot", cat, name); goRank("classement-foot"); });
+        const name = ff.equipe.value.trim(), emails = [...fr.querySelectorAll("input")].map((i) => i.value.trim());
+        if (!SB || !window.UPJV_USER) return say2(fs, "err", "Connecte-toi pour inscrire ton équipe.");
+        if (name.length < 2) return say2(fs, "err", "Donne un nom à ton équipe (2 caractères minimum).");
+        if (emails.some((m) => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m))) return say2(fs, "err", "Vérifie les quatre adresses e-mail de tes coéquipiers.");
+        if (new Set(emails.map((m) => m.toLowerCase())).size < 4) return say2(fs, "err", "Chaque coéquipier doit avoir une adresse différente.");
+        if (!ff.prerequis.checked) return say2(fs, "err", "Pour jouer en classé, chaque joueur doit avoir déjà fait au moins un match de five : coche la case de confirmation.");
+        const btn = ff.querySelector(".cl-submit"); btn.disabled = true; say2(fs, "", "Inscription en cours…");
+        const { data, error } = await SB.rpc("register_team", { p_name: name, p_emails: emails });
+        if (error) { btn.disabled = false; return say2(fs, "err", dbError(error)); }
+        const { error: mailErr } = await SB.functions.invoke("send-team-mails", { body: { type: "registered", team_id: data.team_id } });
+        btn.disabled = false; ff.reset(); addPending("foot", "Foot à 5", name);
+        await loadMyTeam();
+        if (mailErr) console.warn("[Classé] e-mails non envoyés", mailErr);
       });
 
       // PADEL : 1 ligne en 1V1, 2 lignes et un nom de duo en 2V2
@@ -2155,7 +2236,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
 <script>
 // Onglet Sport : lieux par discipline (données issues des tableaux fournis), filtres Gratuit / Payant et compteurs sur les carrés.
 (function () {
-  const VENUES = {"basket": [{"n": "Parc du Grand Marais", "a": "Quartier Étouvie", "c": "Terrain de street basket.", "acc": "Gratuit"}, {"n": "Parc Saint-Pierre", "a": "Boulevard Beauvillé", "c": "Terrain de basketball en accès libre.", "acc": "Gratuit"}, {"n": "Terrain Dejean", "a": "Rue Dejean", "c": "Accès libre à vérifier.", "acc": "Gratuit"}, {"n": "Amiens Sporting Club Basket", "a": "Amiens", "c": "Cotisation annuelle.", "acc": "Payant"}], "padel": [{"n": "Amiens Padel", "a": "Cagny", "c": "Environ 7,50 à 14 € par personne pour 1 h 30.", "acc": "Payant"}, {"n": "Amiens Athletic Club", "a": "Amiens", "c": "Réservation ou abonnement.", "acc": "Payant"}, {"n": "Tennis Club Amiens Métropole", "a": "Secteur Vauvoix", "c": "Réservation ou abonnement.", "acc": "Payant"}, {"n": "Complexe rue de Sully", "a": "75 rue de Sully", "c": "Réservation.", "acc": "Payant"}], "tennis": [{"n": "Amiens Athletic Club", "a": "Amiens", "c": "Cotisation ou réservation.", "acc": "Payant"}, {"n": "Tennis Club Amiens Métropole", "a": "Secteur Vauvoix", "c": "Cotisation ou réservation.", "acc": "Payant"}], "course": [{"n": "Parc Saint-Pierre", "a": "Centre-ville", "c": "Accès libre.", "acc": "Gratuit"}, {"n": "Parc de la Hotoie", "a": "Quartier La Hotoie", "c": "Accès libre.", "acc": "Gratuit"}, {"n": "Chemin de halage", "a": "Vers Camon et Rivery", "c": "Accès libre.", "acc": "Gratuit"}, {"n": "Parc du Grand Marais", "a": "Étouvie", "c": "Accès libre.", "acc": "Gratuit"}], "street-workout": [{"n": "Parc du Grand Marais", "a": "37 rue du Grand Marais", "c": "Accès libre.", "acc": "Gratuit"}, {"n": "Square Paul-Gauguin", "a": "Avenue de la Paix", "c": "Accès libre.", "acc": "Gratuit"}], "natation": [{"n": "Piscine du Coliseum", "a": "20 rue Caumartin", "c": "Environ 3,90 à 5,10 €.", "acc": "Payant"}, {"n": "Aquapôle", "a": "Amiens", "c": "Environ 4,70 à 6,40 €.", "acc": "Payant"}, {"n": "Piscine du Nautilus", "a": "Rue Léo-Lagrange", "c": "Fermeture pour travaux à vérifier.", "acc": "Payant"}], "volley": [{"n": "Amiens Métropole Volley Ball", "a": "Amiens", "c": "Cotisation annuelle.", "acc": "Payant"}, {"n": "Parc du Grand Marais", "a": "Étouvie", "c": "Gratuit pendant certaines animations.", "acc": "Gratuit"}], "badminton": [{"n": "AUC Badminton", "a": "Rue Just-Haüy", "c": "Cotisation.", "acc": "Payant"}, {"n": "ASPTT Badminton", "a": "400 rue Colbert", "c": "Cotisation.", "acc": "Payant"}, {"n": "Multiball", "a": "51 rue de Sully", "c": "Réservation.", "acc": "Payant"}], "ping-pong": [{"n": "Amiens Sport Tennis de Table", "a": "304 rue Gaulthier-de-Rumilly", "c": "Cotisation.", "acc": "Payant"}, {"n": "Léo Lagrange Tennis de Table", "a": "400 rue Colbert", "c": "Cotisation.", "acc": "Payant"}, {"n": "Multiball", "a": "51 rue de Sully", "c": "Réservation.", "acc": "Payant"}], "combat": [{"n": "Amiens SC Boxe", "a": "Avenue du Languedoc", "c": "Inscription.", "acc": "Payant", "d": "Boxe"}, {"n": "Amiens Somme Club Judo", "a": "Coliseum, rue Caumartin", "c": "Cotisation.", "acc": "Payant", "d": "Judo"}, {"n": "Dojo régional", "a": "2 rue Lescouvé", "c": "Selon le club.", "acc": "Payant", "d": "Judo / Jujitsu"}, {"n": "Budosport 80", "a": "Amiens", "c": "Cotisation.", "acc": "Payant", "d": "Judo / Jujitsu"}], "autres-more": [{"n": "Coliseum", "a": "20 rue Caumartin", "c": "Environ 4,80 à 6,10 €, hors patins.", "acc": "Payant", "d": "Patinage"}, {"n": "Parc du Grand Marais", "a": "Étouvie", "c": "Skatepark public.", "acc": "Gratuit", "d": "Skateboard"}, {"n": "Chemin de halage", "a": "Amiens vers Camon", "c": "Accès libre.", "acc": "Gratuit", "d": "Vélo"}, {"n": "Multiball", "a": "51 rue de Sully", "c": "Dès 14 € pour 45 min environ.", "acc": "Payant", "d": "Squash"}]};
+  const VENUES = {"basket": [{"n": "Parc du Grand Marais", "a": "Rue du Grand Marais, 80000 Amiens", "c": "Terrain de street basket.", "acc": "Gratuit"}, {"n": "Parc Saint-Pierre", "a": "Boulevard Beauvillé, 80000 Amiens", "c": "Terrain de basketball en accès libre.", "acc": "Gratuit"}], "padel": [{"n": "Amiens Padel", "a": "1 chemin du Grand Riez, 80330 Cagny", "c": "Environ 7,50 à 14 € par personne pour 1 h 30.", "acc": "Payant"}, {"n": "Amiens Athletic Club", "a": "10 allée des Tennis, 80000 Amiens", "c": "Réservation ou abonnement.", "acc": "Payant"}, {"n": "Tennis Club Amiens Métropole", "a": "37 chemin de Vauvoix, 80000 Amiens", "c": "Réservation ou abonnement.", "acc": "Payant"}, {"n": "Complexe rue de Sully", "a": "75 rue de Sully, 80000 Amiens", "c": "Réservation.", "acc": "Payant"}], "tennis": [{"n": "Amiens Athletic Club", "a": "10 allée des Tennis, 80000 Amiens", "c": "Cotisation ou réservation.", "acc": "Payant"}, {"n": "Tennis Club Amiens Métropole", "a": "37 chemin de Vauvoix, 80000 Amiens", "c": "Cotisation ou réservation.", "acc": "Payant"}], "course": [{"n": "Parc Saint-Pierre", "a": "Boulevard Beauvillé, 80000 Amiens", "c": "Accès libre.", "acc": "Gratuit"}, {"n": "Parc de la Hotoie", "a": "Allée du 51e Régiment, 80000 Amiens", "c": "Accès libre.", "acc": "Gratuit"}, {"n": "Chemin de halage", "a": "Chemin de halage, 80000 Amiens", "c": "Accès libre.", "acc": "Gratuit"}, {"n": "Parc du Grand Marais", "a": "Rue du Grand Marais, 80000 Amiens", "c": "Accès libre.", "acc": "Gratuit"}], "street-workout": [{"n": "Parc du Grand Marais", "a": "Rue du Grand Marais, 80000 Amiens", "c": "Accès libre.", "acc": "Gratuit"}], "natation": [{"n": "Piscine du Coliseum", "a": "27 rue Caumartin, 80000 Amiens", "c": "Environ 3,90 à 5,10 €.", "acc": "Payant"}, {"n": "Aquapôle", "a": "50 rue Alexandre-Dumas, 80090 Amiens", "c": "Environ 4,70 à 6,40 €.", "acc": "Payant"}], "volley": [{"n": "Amiens Métropole Volley Ball", "a": "Gymnase de la Paix, avenue de la Paix, 80080 Amiens", "c": "Cotisation annuelle.", "acc": "Payant"}], "badminton": [{"n": "AUC Badminton", "a": "Gymnase Auguste-Janvier, rue Just-Haüy, 80000 Amiens", "c": "Cotisation.", "acc": "Payant"}, {"n": "ASPTT Badminton", "a": "400 rue Colbert, 80000 Amiens", "c": "Cotisation.", "acc": "Payant"}, {"n": "Multiball", "a": "51 rue de Sully, 80000 Amiens", "c": "Réservation.", "acc": "Payant"}], "ping-pong": [{"n": "Amiens Sport Tennis de Table", "a": "304 rue Gauthier-de-Rumilly, 80000 Amiens", "c": "Cotisation.", "acc": "Payant"}, {"n": "Léo Lagrange Tennis de Table", "a": "400 rue Colbert, 80000 Amiens", "c": "Cotisation.", "acc": "Payant"}, {"n": "Multiball", "a": "51 rue de Sully, 80000 Amiens", "c": "Réservation.", "acc": "Payant"}], "combat": [{"n": "Amiens SC Boxe", "a": "Avenue du Languedoc, 80000 Amiens", "c": "Inscription.", "acc": "Payant", "d": "Boxe"}, {"n": "Amiens Somme Club Judo", "a": "27 rue Caumartin, 80000 Amiens", "c": "Cotisation.", "acc": "Payant", "d": "Judo"}, {"n": "Dojo régional", "a": "2 rue Lescouvé, 80000 Amiens", "c": "Inscription auprès du club.", "acc": "Payant", "d": "Judo / Jujitsu"}, {"n": "Budosport 80", "a": "2 rue des Archers, 80000 Amiens", "c": "Cotisation.", "acc": "Payant", "d": "Judo / Jujitsu"}], "autres-more": [{"n": "Coliseum", "a": "27 rue Caumartin, 80000 Amiens", "c": "Environ 4,80 à 6,10 €, hors patins.", "acc": "Payant", "d": "Patinage"}, {"n": "Parc du Grand Marais", "a": "Rue du Grand Marais, 80000 Amiens", "c": "Skatepark public.", "acc": "Gratuit", "d": "Skateboard"}, {"n": "Chemin de halage", "a": "Chemin de halage, 80000 Amiens", "c": "Accès libre.", "acc": "Gratuit", "d": "Vélo"}, {"n": "Multiball", "a": "51 rue de Sully, 80000 Amiens", "c": "Dès 14 € pour 45 min environ.", "acc": "Payant", "d": "Squash"}]};
   const PIN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
   const CTA = { padel: ["#classe-padel", "Jouer en classé au padel"] };
   const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
@@ -2215,7 +2296,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
     if (list) {
       const wrap = el("div", "venue-list"); list.forEach((v) => wrap.append(venueRow(v)));
       host.append(wrap); mountBar(wrap);
-      if (soon) { soon.hidden = false; soon.textContent = "Où pratiquer à Amiens : choisis un lieu, ouvre le plan et c'est parti."; }
+      if (soon) { soon.hidden = false; soon.textContent = "Où pratiquer à Amiens : retrouve les lieux, leur adresse et leurs conditions d'accès. Un clic sur l'adresse ouvre l'itinéraire dans Google Maps."; }
       if (CTA[key]) { const c = el("a", "venue-cta", CTA[key][1]); c.href = CTA[key][0]; host.append(c); }
     }
     if (more) {
