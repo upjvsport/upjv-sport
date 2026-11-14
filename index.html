@@ -529,6 +529,10 @@ body.view-sports .menu .dropdown:not(.classe-font) > .dropbtn::after, body.view-
 .venue { display: flex; align-items: center; gap: 28px; padding: 24px 30px; color: white; background: linear-gradient(135deg, var(--navy), #05101f); border-left: 6px solid var(--red); box-shadow: 0 14px 40px rgba(8,45,91,0.25); }
 .venue-txt { flex: 1 1 auto; min-width: 0; }
 .venue h3 { margin-bottom: 10px; font-family: Orbitron, "Arial Black", sans-serif; font-size: clamp(18px, 2.4vw, 26px); text-transform: uppercase; line-height: 1.2; }
+.addr-link { color: inherit; border-bottom: 2px solid var(--red); text-decoration: none; }
+.venue-txt .venue-addr a { color: #fff; font-size: inherit; font-weight: inherit; letter-spacing: 0; text-transform: none; border-bottom: 2px solid var(--red); }
+.venue-txt .venue-addr a:hover { color: #ffd9de; }
+.venue-txt .venue-addr.todo a { color: #aeb9d0; border-bottom: 0; text-decoration: underline dotted; }
 .venue-addr { margin-bottom: 10px; font-size: 16px; font-weight: 700; color: #fff; }
 .venue-addr.todo { display: inline-block; padding: 6px 12px; border: 1px dashed rgba(255,255,255,0.4); font-size: 14px; font-weight: 600; color: #aeb9d0; }
 .venue .gym-meta { margin-bottom: 14px; font-size: 14px; line-height: 1.5; color: #aeb9d0; }
@@ -1160,32 +1164,26 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc paid">Payant</span></div>
             <h3>Teams5 Amiens</h3>
-            <p class="venue-addr">25 Rue Le Tintoret, 80080 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Teams5%20Amiens%2025%20Rue%20Le%20Tintoret%2080080%20Amiens" target="_blank" rel="noopener noreferrer">25 Rue Le Tintoret, 80080 Amiens</a></p>
             <p class="gym-meta">6 terrains de foot à 5 en pelouse synthétique. Ouvert 7 jours sur 7, de 10 h à minuit. Réservation par téléphone : 03 75 14 01 30.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Teams5%20Amiens%2025%20Rue%20Le%20Tintoret%2080080%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
             <a href="https://teams5-amiens.fr/" target="_blank" rel="noopener noreferrer">Site officiel</a>
           </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Teams5%20Amiens%2025%20Rue%20Le%20Tintoret%2080080%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Teams5 Amiens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
         </article>
               <article class="venue" data-acc="Payant">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc paid">Payant</span></div>
             <h3>Multiball</h3>
-            <p class="venue-addr">51 rue de Sully</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Multiball%2051%20rue%20de%20Sully%20Amiens" target="_blank" rel="noopener noreferrer">51 rue de Sully</a></p>
             <p class="gym-meta">Réservation à la séance.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Multiball%2051%20rue%20de%20Sully%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Multiball%2051%20rue%20de%20Sully%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Multiball"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
         <article class="venue" data-acc="Gratuit">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Parc Saint-Pierre</h3>
-            <p class="venue-addr">Boulevard Beauvillé</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Parc%20Saint-Pierre%20Boulevard%20Beauvill%C3%A9%20Amiens" target="_blank" rel="noopener noreferrer">Boulevard Beauvillé</a></p>
             <p class="gym-meta">Espaces publics.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Parc%20Saint-Pierre%20Boulevard%20Beauvill%C3%A9%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Parc%20Saint-Pierre%20Boulevard%20Beauvill%C3%A9%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Parc Saint-Pierre"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
       </div>
       <div class="venue-list" data-foot="8" hidden>
@@ -1193,71 +1191,57 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Terrain à côté du Coliseum</h3>
-            <p class="venue-addr">Rue Caumartin, 80000 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Coliseum%20Amiens" target="_blank" rel="noopener noreferrer">Rue Caumartin, 80000 Amiens</a></p>
             <p class="gym-meta">Terrain de 41 × 41 m en gazon synthétique, éclairé, à côté du Coliseum. Accès libre : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Coliseum%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Coliseum%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Terrain à côté du Coliseum"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
         <article class="venue" data-acc="Gratuit">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Terrain Brossolette</h3>
-            <p class="venue-addr">Rue Brossolette, 80080 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20Brossolette%20Amiens" target="_blank" rel="noopener noreferrer">Rue Brossolette, 80080 Amiens</a></p>
             <p class="gym-meta">Terrain de football de 100 × 60 m. Accès libre : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20Brossolette%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20Brossolette%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Terrain Brossolette"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
         <article class="venue" data-acc="Gratuit">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Parc de loisirs du Grand Marais</h3>
-            <p class="venue-addr">Rue du Grand Marais, 80000 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Parc%20de%20loisirs%20du%20Grand%20Marais%20Amiens" target="_blank" rel="noopener noreferrer">Rue du Grand Marais, 80000 Amiens</a></p>
             <p class="gym-meta">Terrain de football de 110 × 67 m, terrain d'entraînement de 75 × 48 m et terrain de football brésilien. Accès libre selon disponibilité : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Parc%20de%20loisirs%20du%20Grand%20Marais%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Parc%20de%20loisirs%20du%20Grand%20Marais%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Parc de loisirs du Grand Marais"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
         <article class="venue" data-acc="Gratuit">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Stade Soufflot – Virgile Dufossé</h3>
-            <p class="venue-addr">Chemin de Cottenchy, 80000 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Stade%20Soufflot%20%E2%80%93%20Virgile%20Dufoss%C3%A9%20Amiens" target="_blank" rel="noopener noreferrer">Chemin de Cottenchy, 80000 Amiens</a></p>
             <p class="gym-meta">Terrains de football de 100 × 60 m et de 60 × 50 m (bitume). Accès libre : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Stade%20Soufflot%20%E2%80%93%20Virgile%20Dufoss%C3%A9%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Stade%20Soufflot%20%E2%80%93%20Virgile%20Dufoss%C3%A9%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Stade Soufflot – Virgile Dufossé"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
         <article class="venue" data-acc="Gratuit">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Terrain de la Rochefoucauld</h3>
-            <p class="venue-addr">Rue de la Rochefoucauld, 80000 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20de%20la%20Rochefoucauld%20Amiens" target="_blank" rel="noopener noreferrer">Rue de la Rochefoucauld, 80000 Amiens</a></p>
             <p class="gym-meta">Terrain de football de 66 × 43 m. Accès libre : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20de%20la%20Rochefoucauld%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20de%20la%20Rochefoucauld%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Terrain de la Rochefoucauld"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
         <article class="venue" data-acc="Gratuit">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Terrain des Acacias</h3>
-            <p class="venue-addr">Chemin des Acacias, 80000 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20des%20Acacias%20Amiens" target="_blank" rel="noopener noreferrer">Chemin des Acacias, 80000 Amiens</a></p>
             <p class="gym-meta">Terrain de football de 60 × 40 m. Accès libre : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20des%20Acacias%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20des%20Acacias%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Terrain des Acacias"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
         <article class="venue" data-acc="Gratuit">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Terrain de l'Allée des Rencontres</h3>
-            <p class="venue-addr">Allée des Rencontres, 80080 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20de%20l%27All%C3%A9e%20des%20Rencontres%20Amiens" target="_blank" rel="noopener noreferrer">Allée des Rencontres, 80080 Amiens</a></p>
             <p class="gym-meta">Terrain de football de 35 × 30 m. Accès libre : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20de%20l%27All%C3%A9e%20des%20Rencontres%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20de%20l%27All%C3%A9e%20des%20Rencontres%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Terrain de l'Allée des Rencontres"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
       </div>
       <div class="venue-list" data-foot="11" hidden>
@@ -1265,61 +1249,49 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Terrain Brossolette</h3>
-            <p class="venue-addr">Rue Brossolette, 80080 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20Brossolette%20Amiens" target="_blank" rel="noopener noreferrer">Rue Brossolette, 80080 Amiens</a></p>
             <p class="gym-meta">Terrain de football de 100 × 60 m. Accès libre : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20Brossolette%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20Brossolette%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Terrain Brossolette"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
         <article class="venue" data-acc="Gratuit">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Parc de loisirs du Grand Marais</h3>
-            <p class="venue-addr">Rue du Grand Marais, 80000 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Parc%20de%20loisirs%20du%20Grand%20Marais%20Amiens" target="_blank" rel="noopener noreferrer">Rue du Grand Marais, 80000 Amiens</a></p>
             <p class="gym-meta">Terrain de football de 110 × 67 m, terrain d'entraînement de 75 × 48 m et terrain de football brésilien. Accès libre selon disponibilité : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Parc%20de%20loisirs%20du%20Grand%20Marais%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Parc%20de%20loisirs%20du%20Grand%20Marais%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Parc de loisirs du Grand Marais"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
         <article class="venue" data-acc="Gratuit">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Stade Soufflot – Virgile Dufossé</h3>
-            <p class="venue-addr">Chemin de Cottenchy, 80000 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Stade%20Soufflot%20%E2%80%93%20Virgile%20Dufoss%C3%A9%20Amiens" target="_blank" rel="noopener noreferrer">Chemin de Cottenchy, 80000 Amiens</a></p>
             <p class="gym-meta">Terrains de football de 100 × 60 m et de 60 × 50 m (bitume). Accès libre : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Stade%20Soufflot%20%E2%80%93%20Virgile%20Dufoss%C3%A9%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Stade%20Soufflot%20%E2%80%93%20Virgile%20Dufoss%C3%A9%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Stade Soufflot – Virgile Dufossé"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
         <article class="venue" data-acc="Gratuit">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Terrain de la Rochefoucauld</h3>
-            <p class="venue-addr">Rue de la Rochefoucauld, 80000 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20de%20la%20Rochefoucauld%20Amiens" target="_blank" rel="noopener noreferrer">Rue de la Rochefoucauld, 80000 Amiens</a></p>
             <p class="gym-meta">Terrain de football de 66 × 43 m. Accès libre : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20de%20la%20Rochefoucauld%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20de%20la%20Rochefoucauld%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Terrain de la Rochefoucauld"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
         <article class="venue" data-acc="Gratuit">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Terrain des Acacias</h3>
-            <p class="venue-addr">Chemin des Acacias, 80000 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20des%20Acacias%20Amiens" target="_blank" rel="noopener noreferrer">Chemin des Acacias, 80000 Amiens</a></p>
             <p class="gym-meta">Terrain de football de 60 × 40 m. Accès libre : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20des%20Acacias%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20des%20Acacias%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Terrain des Acacias"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
         <article class="venue" data-acc="Gratuit">
           <div class="venue-txt">
             <div class="venue-tags"><span class="tag-acc free">Gratuit</span></div>
             <h3>Terrain de l'Allée des Rencontres</h3>
-            <p class="venue-addr">Allée des Rencontres, 80080 Amiens</p>
+            <p class="venue-addr"><a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20de%20l%27All%C3%A9e%20des%20Rencontres%20Amiens" target="_blank" rel="noopener noreferrer">Allée des Rencontres, 80080 Amiens</a></p>
             <p class="gym-meta">Terrain de football de 35 × 30 m. Accès libre : on peut y jouer sans réservation ni autorisation.</p>
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20de%20l%27All%C3%A9e%20des%20Rencontres%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
-          </div>
-          <a class="venue-map" href="https://www.google.com/maps/search/?api=1&amp;query=Terrain%20de%20l%27All%C3%A9e%20des%20Rencontres%20Amiens" target="_blank" rel="noopener noreferrer" aria-label="Plan : Terrain de l'Allée des Rencontres"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Plan</span></a>
+            </div>
         </article>
       </div>
     </div>
@@ -1335,48 +1307,41 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         <article class="gym" data-acc="Payant">
           <div class="venue-tags"><span class="tag-acc paid">Payant</span></div>
           <h3>Basic-Fit Amiens · Rue du Général Leclerc</h3>
-          <p>22 Rue du Général Leclerc, 80000 Amiens</p>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=Basic-Fit%20Amiens%2022%20Rue%20du%20G%C3%A9n%C3%A9ral%20Leclerc%2C%2080000%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
+          <p><a class="addr-link" href="https://www.google.com/maps/search/?api=1&amp;query=Basic-Fit%20Amiens%2022%20Rue%20du%20G%C3%A9n%C3%A9ral%20Leclerc%2C%2080000%20Amiens" target="_blank" rel="noopener noreferrer" title="Ouvrir dans Google Maps">22 Rue du Général Leclerc, 80000 Amiens</a></p>
         </article>
         <article class="gym" data-acc="Payant">
           <div class="venue-tags"><span class="tag-acc paid">Payant</span></div>
           <h3>Basic-Fit Amiens · Rue de Noyon</h3>
-          <p>7 Rue de Noyon, 80000 Amiens</p>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=Basic-Fit%20Amiens%207%20Rue%20de%20Noyon%2C%2080000%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
+          <p><a class="addr-link" href="https://www.google.com/maps/search/?api=1&amp;query=Basic-Fit%20Amiens%207%20Rue%20de%20Noyon%2C%2080000%20Amiens" target="_blank" rel="noopener noreferrer" title="Ouvrir dans Google Maps">7 Rue de Noyon, 80000 Amiens</a></p>
         </article>
         <article class="gym" data-acc="Payant">
           <div class="venue-tags"><span class="tag-acc paid">Payant</span></div>
           <h3>Basic-Fit Amiens · Avenue de l'Europe</h3>
-          <p>150 Avenue de l'Europe, 80000 Amiens</p>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=Basic-Fit%20Amiens%20150%20Avenue%20de%20l%27Europe%2C%2080000%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
+          <p><a class="addr-link" href="https://www.google.com/maps/search/?api=1&amp;query=Basic-Fit%20Amiens%20150%20Avenue%20de%20l%27Europe%2C%2080000%20Amiens" target="_blank" rel="noopener noreferrer" title="Ouvrir dans Google Maps">150 Avenue de l'Europe, 80000 Amiens</a></p>
         </article>
         <article class="gym" data-acc="Payant">
           <div class="venue-tags"><span class="tag-acc paid">Payant</span></div>
           <h3>Keepcool Amiens Centre</h3>
-          <p>2 Rue Robert de Luzarches, 80000 Amiens</p>
+          <p><a class="addr-link" href="https://www.google.com/maps/search/?api=1&amp;query=Keepcool%20Amiens%20Centre%202%20Rue%20Robert%20de%20Luzarches%2C%2080000%20Amiens" target="_blank" rel="noopener noreferrer" title="Ouvrir dans Google Maps">2 Rue Robert de Luzarches, 80000 Amiens</a></p>
           <p class="gym-cond">Abonnement.</p>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=Keepcool%20Amiens%20Centre%202%20Rue%20Robert%20de%20Luzarches%2C%2080000%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
         </article>
         <article class="gym" data-acc="Payant">
           <div class="venue-tags"><span class="tag-acc paid">Payant</span></div>
           <h3>Fitness Park Amiens Centre-Ville</h3>
-          <p>56 Rue des Trois Cailloux, 80000 Amiens</p>
+          <p><a class="addr-link" href="https://www.google.com/maps/search/?api=1&amp;query=Fitness%20Park%2056%20Rue%20des%20Trois%20Cailloux%2080000%20Amiens" target="_blank" rel="noopener noreferrer" title="Ouvrir dans Google Maps">56 Rue des Trois Cailloux, 80000 Amiens</a></p>
           <p class="gym-cond">Abonnement.</p>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=Fitness%20Park%2056%20Rue%20des%20Trois%20Cailloux%2080000%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
         </article>
         <article class="gym" data-acc="Payant">
           <div class="venue-tags"><span class="tag-acc paid">Payant</span></div>
           <h3>ON AIR Amiens</h3>
-          <p>3 Avenue Paul Claudel, 80480 Dury (près d'Amiens)</p>
+          <p><a class="addr-link" href="https://www.google.com/maps/search/?api=1&amp;query=ON%20AIR%203%20Avenue%20Paul%20Claudel%2080480%20Dury" target="_blank" rel="noopener noreferrer" title="Ouvrir dans Google Maps">3 Avenue Paul Claudel, 80480 Dury (près d'Amiens)</a></p>
           <p class="gym-cond">Dès 32 € les 4 semaines environ, hors frais.</p>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=ON%20AIR%203%20Avenue%20Paul%20Claudel%2080480%20Dury" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
         </article>
         <article class="gym" data-acc="Payant">
           <div class="venue-tags"><span class="tag-acc paid">Payant</span></div>
           <h3>Fit Place Amiens</h3>
-          <p>161 Rue Dejean, Amiens</p>
+          <p><a class="addr-link" href="https://www.google.com/maps/search/?api=1&amp;query=Fit%20Place%20161%20rue%20Dejean%20Amiens" target="_blank" rel="noopener noreferrer" title="Ouvrir dans Google Maps">161 Rue Dejean, Amiens</a></p>
           <p class="gym-cond">Abonnement.</p>
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=Fit%20Place%20161%20rue%20Dejean%20Amiens" target="_blank" rel="noopener noreferrer">Voir sur le plan</a>
         </article>
         </div>
         <p class="mc-note">Adresses relevées sur les sites officiels des enseignes. Tarifs, horaires et accès : à vérifier auprès de chaque salle.</p>
@@ -2210,12 +2175,11 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
     tags.append(el("span", "tag-acc " + (v.acc === "Gratuit" ? "free" : "paid"), v.acc));
     if (v.d) tags.append(el("span", "tag-sub", v.d));
     txt.append(tags, el("h3", "", v.n));
-    const addr = el("p", "venue-addr" + (v.a === "Amiens" ? " todo" : ""), v.a === "Amiens" ? "Adresse à compléter" : v.a);
+    const addr = el("p", "venue-addr" + (v.a === "Amiens" ? " todo" : ""));
+    const link = el("a", "", v.a === "Amiens" ? "Adresse à compléter" : v.a); link.href = href; link.target = "_blank"; link.rel = "noopener noreferrer"; link.title = "Ouvrir dans Google Maps";
+    addr.append(link);
     txt.append(addr, el("p", "gym-meta", v.c));
-    const a = el("a", "", "Voir sur le plan"); a.href = href; a.target = "_blank"; a.rel = "noopener noreferrer"; txt.append(a);
-    const map = el("a", "venue-map"); map.href = href; map.target = "_blank"; map.rel = "noopener noreferrer"; map.setAttribute("aria-label", "Plan : " + v.n);
-    map.innerHTML = PIN; map.append(el("span", "", "Plan"));
-    art.append(txt, map);
+    art.append(txt);
     return art;
   }
 
