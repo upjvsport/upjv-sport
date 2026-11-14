@@ -912,6 +912,17 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
       <p class="modal-switch">Pas encore de compte ? <a href="#" data-open="modal-signup">S'inscrire</a></p>
     </form>
   </div>
+  <div class="modal" id="modal-reset" hidden>
+    <form class="modal-box" novalidate role="dialog" aria-modal="true" aria-labelledby="reset-title" tabindex="-1">
+      <button type="button" class="modal-close" data-close aria-label="Fermer">×</button>
+      <h2 id="reset-title">Nouveau mot de passe</h2>
+      <p class="modal-sub">Choisis un mot de passe de 8 caractères minimum</p>
+      <label>Nouveau mot de passe<input name="password" type="password" autocomplete="new-password" required></label>
+      <label>Confirme le mot de passe<input name="password2" type="password" autocomplete="new-password" required></label>
+      <button type="submit" class="modal-submit">Enregistrer</button>
+      <p class="modal-status" role="status"></p>
+    </form>
+  </div>
   <div class="modal" id="modal-account" hidden>
     <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="account-title" tabindex="-1">
       <button type="button" class="modal-close" data-close aria-label="Fermer">×</button>
@@ -1893,6 +1904,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
 
       document.querySelectorAll(".modal form").forEach((f) => f.addEventListener("submit", async (e) => {
         e.preventDefault();
+        if (f.closest(".modal").id === "modal-reset") return;
         const st = f.querySelector(".modal-status");
         const signupForm = f.closest(".modal").id === "modal-signup";
         const bad = [...f.querySelectorAll("input")].find((i) => !i.hasAttribute("data-optional") && (!i.value.trim() || !i.checkValidity()));
@@ -1948,13 +1960,20 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         const { error } = await sb.auth.signOut();
         if (error) say(st, "err", frError(error)); else close();
       });
-      // Retour du lien « mot de passe oublié » : on demande le nouveau mot de passe.
-      if (sb) sb.auth.onAuthStateChange(async (event) => {
-        if (event !== "PASSWORD_RECOVERY") return;
-        const pwd = prompt("Choisis ton nouveau mot de passe (8 caractères minimum) :");
-        if (!pwd || pwd.length < 8) { alert("Mot de passe non modifié (8 caractères minimum)."); return; }
-        const { error } = await sb.auth.updateUser({ password: pwd });
-        alert(error ? frError(error) : "Mot de passe modifié. Tu es connecté.");
+      // Retour du lien « mot de passe oublié » : on affiche la fenêtre « Nouveau mot de passe » aux couleurs du site.
+      const resetForm = document.querySelector("#modal-reset form");
+      if (sb) sb.auth.onAuthStateChange((event) => { if (event === "PASSWORD_RECOVERY") setTimeout(() => open("modal-reset"), 0); });
+      resetForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const st = resetForm.querySelector(".modal-status"), btn = resetForm.querySelector(".modal-submit");
+        const a = resetForm.password.value, b = resetForm.password2.value;
+        if (a.length < 8) { say(st, "err", "Le mot de passe doit contenir au moins 8 caractères."); resetForm.password.focus(); return; }
+        if (a !== b) { say(st, "err", "Les deux mots de passe ne sont pas identiques."); resetForm.password2.focus(); return; }
+        btn.disabled = true;
+        const { error } = await sb.auth.updateUser({ password: a });
+        btn.disabled = false;
+        if (error) { say(st, "err", frError(error)); return; }
+        resetForm.reset(); say(st, "ok", "Mot de passe modifié. Tu es connecté."); setTimeout(close, 1500);
       });
     })();
 
