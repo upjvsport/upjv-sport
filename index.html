@@ -798,6 +798,25 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
 .cl-team-members li { padding: 8px 14px; background: rgba(255,255,255,0.08); font-size: 15px; font-weight: 600; color: white; }
 .cl-team-members li.cap::after { content: " · capitaine"; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #2bd9ff; }
 .cl-team-note { margin: 0; font-size: 15px; line-height: 1.55; color: #c9d4ea; }
+.cl-team-members li.inf { opacity: .5; background: rgba(255,255,255,0.04); color: #aeb9d0; }
+.cl-team-members li .cl-inf-tag { font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #ffd24d; }
+.cl-manage .cl-mrow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.cl-manage .cl-btn { padding: 11px 18px; border: 1px solid rgba(255,255,255,0.4); border-radius: 24px; background: transparent; color: white; font: inherit; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
+.cl-manage .cl-btn:hover { background: rgba(255,255,255,0.1); }
+.cl-manage .cl-btn:disabled { opacity: .5; cursor: default; }
+.cl-manage .cl-btn.danger { border-color: #ff5a6e; color: #ffd0d6; }
+.cl-manage .cl-btn.danger.solid { background: #E0112B; border-color: #E0112B; color: white; }
+.cl-manage .cl-mpop { margin-top: 18px; padding: 18px 20px; background: rgba(255,255,255,0.06); border-left: 4px solid #2bd9ff; }
+.cl-manage .cl-mpop.warn { border-left-color: #E0112B; }
+.cl-manage .cl-mpop select, .cl-manage .cl-mpop input[type="search"] { width: 100%; max-width: 420px; margin: 6px 0 12px; padding: 11px 14px; border: 1px solid rgba(255,255,255,0.3); background: rgba(4,8,36,0.8); color: white; font: inherit; font-size: 15px; }
+.cl-cand { width: 100%; max-height: 300px; overflow: auto; display: block; border-collapse: collapse; }
+.cl-cand tbody { display: table; width: 100%; }
+.cl-cand td { padding: 9px 6px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 15px; color: white; }
+.cl-cand td:last-child { text-align: right; }
+.cl-cand button { padding: 8px 14px; border: 0; border-radius: 20px; background: #2bd9ff; color: #04102c; font: inherit; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; }
+#classe-padel .cl-manage .cl-mpop { border-left-color: #d4ff2a; }
+#classe-padel .cl-manage .cl-mpop.warn { border-left-color: #E0112B; }
+#classe-padel .cl-cand button { background: #d4ff2a; }
 .cl-opps { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin-top: 18px; }
 .cl-opp { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; background: rgba(255,255,255,0.07); border-left: 4px solid #c24bff; }
 .cl-opp b { font-size: 18px; font-weight: 900; text-transform: uppercase; color: white; }
@@ -2143,6 +2162,84 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         try { const j = await err.context.json(); if (j && j.error) return j.error; } catch (e) {}
         return "Envoi impossible pour le moment : réessaie dans un instant.";
       }
+      function memberList(team) {
+        const ul = tx("ul", "cl-team-members");
+        (team.members || []).forEach((m) => {
+          const li = tx("li", (m.captain ? "cap " : "") + (m.infirmary ? "inf" : ""), (m.prenom + " " + (m.nom || "").toUpperCase()).trim());
+          if (m.infirmary) li.append(tx("span", "cl-inf-tag", " · infirmerie"));
+          ul.append(li);
+        });
+        return ul;
+      }
+      // Gérer mon inscription : infirmerie, nouveau joueur, quitter (foot, padel 1V1 et 2V2)
+      function manageBox(team, cat, reload) {
+        const solo = cat === "1V1", members = team.members || [], me = members.find((m) => m.me) || {}, sick = members.filter((m) => m.infirmary);
+        const box = tx("div", "cl-team-box cl-manage"), row = tx("div", "cl-mrow"), zone = tx("div", "");
+        box.append(tx("h2", "", "Gérer mon inscription" + (cat === "Foot à 5" ? "" : " · " + cat)));
+        const btn = (label, cls, fn) => { const b = tx("button", "cl-btn " + (cls || ""), label); b.type = "button"; b.addEventListener("click", () => fn(b)); return b; };
+        const fail = (el, err) => { el.disabled = false; zone.prepend(tx("p", "cl-opp-msg", dbError(err))); };
+        if (!solo) {
+          box.append(tx("p", "cl-team-note", "Blessé ou indisponible ? Passe à l'infirmerie : tu te grises et ton équipe peut te faire remplacer, sans toucher aux autres joueurs."));
+          row.append(btn(me.infirmary ? "Je suis de retour" : "Passer à l'infirmerie", "", async (b) => {
+            b.disabled = true;
+            const { error } = await SB.rpc("set_infirmary", { p_category: cat, p_on: !me.infirmary });
+            if (error) return fail(b, error);
+            reload();
+          }));
+          if (sick.length) row.append(btn("Nouveau joueur", "", async (b) => {
+            b.disabled = true;
+            const { data, error } = await SB.rpc("candidates", { p_category: cat });
+            b.disabled = false;
+            if (error) return fail(b, error);
+            const sub = tx("div", "cl-mpop");
+            sub.append(tx("h2", "", "Nouveau joueur"));
+            let sel = null;
+            if (sick.length > 1) {
+              sub.append(tx("p", "cl-team-note", "Qui remplace-t-il ?"));
+              sel = document.createElement("select");
+              sick.forEach((m) => { const o = document.createElement("option"); o.value = m.id; o.textContent = (m.prenom + " " + (m.nom || "").toUpperCase()).trim(); sel.append(o); });
+              sub.append(sel);
+            } else sub.append(tx("p", "cl-team-note", "Il prend la place de " + (sick[0].prenom + " " + (sick[0].nom || "").toUpperCase()).trim() + ". Choisis un joueur inscrit sur le site :"));
+            const list = data || [];
+            if (!list.length) { sub.append(tx("p", "cl-team-note", "Aucun joueur disponible pour l'instant : il doit d'abord créer son compte sur le site.")); zone.replaceChildren(sub); return; }
+            const q = document.createElement("input"); q.type = "search"; q.placeholder = "Rechercher un nom"; q.setAttribute("aria-label", "Rechercher un joueur");
+            const tb = document.createElement("tbody"), table = tx("table", "cl-cand"); table.append(tb);
+            const draw = () => {
+              const f = q.value.trim().toLowerCase();
+              tb.replaceChildren(...list.filter((c) => (c.prenom + " " + c.nom).toLowerCase().includes(f)).map((c) => {
+                const tr = document.createElement("tr"), td1 = tx("td", "", (c.prenom + " " + (c.nom || "").toUpperCase()).trim()), td2 = tx("td", ""), add = tx("button", "", "Ajouter");
+                add.type = "button";
+                add.addEventListener("click", async () => {
+                  if (add.dataset.ok !== "1") { add.dataset.ok = "1"; add.textContent = "Confirmer"; return; }
+                  add.disabled = true;
+                  const { error: e2 } = await SB.rpc("replace_member", { p_category: cat, p_out: sel ? sel.value : sick[0].id, p_in: c.id });
+                  if (e2) { add.disabled = false; add.dataset.ok = ""; add.textContent = "Ajouter"; return fail(add, e2); }
+                  reload();
+                });
+                td2.append(add); tr.append(td1, td2); return tr;
+              }));
+            };
+            q.addEventListener("input", draw); draw();
+            sub.append(q, table); zone.replaceChildren(sub);
+          }));
+        }
+        row.append(btn("Quitter le classé", "danger", () => {
+          const sub = tx("div", "cl-mpop warn"), r2 = tx("div", "cl-mrow");
+          sub.append(tx("h2", "", "Attention"));
+          sub.append(tx("p", "cl-team-note", solo
+            ? "Ton inscription au 1V1 sera supprimée : ton nom disparaît du tableau et de la liste des adversaires. Tu pourras t'inscrire de nouveau plus tard."
+            : "Le duo ou l'équipe « " + team.name + " » sera supprimé pour tous ses joueurs, avec ses propositions de match. Cette action est définitive."));
+          r2.append(btn("Oui, supprimer", "danger solid", async (b) => {
+            b.disabled = true;
+            const { error } = await SB.rpc("leave_team", { p_category: cat });
+            if (error) return fail(b, error);
+            reload();
+          }), btn("Annuler", "", () => zone.replaceChildren()));
+          sub.append(r2); zone.replaceChildren(sub);
+        }));
+        box.append(row, zone);
+        return box;
+      }
       async function loadMyTeam() {
         if (!SB || !window.UPJV_USER) { panel.hidden = true; ff.hidden = false; return; }
         const { data: team, error } = await SB.rpc("my_team");
@@ -2152,9 +2249,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         const ok = team.status === "validated";
         const box = tx("div", "cl-team-box"), h = tx("h2", "", "Mon équipe"), nm = tx("p", "cl-team-name", team.name);
         nm.append(tx("span", "cl-team-state" + (ok ? " ok" : ""), ok ? "validée" : "en attente de validation"));
-        const ul = tx("ul", "cl-team-members");
-        (team.members || []).forEach((m) => ul.append(tx("li", m.captain ? "cap" : "", (m.prenom + " " + (m.nom || "").toUpperCase()).trim())));
-        box.append(h, nm, ul, tx("p", "cl-team-note", ok ? "Ton équipe est validée : tu peux proposer un match aux équipes ci-dessous." : "L'équipe UPJV SPORT vérifie ton inscription. Dès qu'elle est validée, tu pourras proposer des matchs aux autres équipes."));
+        box.append(h, nm, memberList(team), tx("p", "cl-team-note", ok ? "Ton équipe est validée : tu peux proposer un match aux équipes ci-dessous." : "L'équipe UPJV SPORT vérifie ton inscription. Dès qu'elle est validée, tu pourras proposer des matchs aux autres équipes."));
         const out = [box];
         if (ok) {
           const ob = tx("div", "cl-team-box"); ob.append(tx("h2", "", "Contre qui jouer"));
@@ -2179,6 +2274,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
           }
           out.push(ob);
         }
+        out.push(manageBox(team, "Foot à 5", async () => { await loadMyTeam(); loadTeams(); }));
         panel.replaceChildren(...out);
       }
       document.addEventListener("upjv-auth", loadMyTeam); loadMyTeam();
@@ -2211,11 +2307,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         const box = tx("div", "cl-team-box"), nm = tx("p", "cl-team-name", team.name);
         nm.append(tx("span", "cl-team-state" + (ok ? " ok" : ""), ok ? "validé" : "en attente"));
         box.append(tx("h2", "", "Mon inscription · " + cat), nm);
-        if (!solo) {
-          const ul = tx("ul", "cl-team-members");
-          (team.members || []).forEach((m) => ul.append(tx("li", m.captain ? "cap" : "", (m.prenom + " " + (m.nom || "").toUpperCase()).trim())));
-          box.append(ul);
-        }
+        if (!solo) box.append(memberList(team));
         box.append(tx("p", "cl-team-note", ok ? "Tu es inscrit : tu peux proposer un match aux adversaires ci-dessous." : "Ton inscription est en cours de vérification."));
         const out = [box];
         if (ok) {
@@ -2241,6 +2333,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
           }
           out.push(ob);
         }
+        out.push(manageBox(team, cat, async () => { await loadPadelTeams(); loadTeams(); }));
         return out;
       }
       async function loadPadelTeams() {
