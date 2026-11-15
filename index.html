@@ -663,6 +663,7 @@ body.view-foot .classe-font .dropbtn::after, body.view-padel .classe-font .dropb
 .cl-lab { font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; }
 .cl-form { padding: 36px; background: rgba(4, 8, 36, 0.66); border: 1px solid rgba(255,255,255,0.18); backdrop-filter: blur(8px); }
 .cl-form label.cl-field { display: block; margin-bottom: 22px; font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; }
+.cl-form label.cl-field[hidden], .cl-form .cl-row[hidden] { display: none; }
 .cl-form input[type="text"] { width: 100%; box-sizing: border-box; padding: 14px 16px; color: white; font: inherit; font-size: 16px; letter-spacing: 0; text-transform: none; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); outline: none; transition: 0.2s; }
 .cl-form label.cl-field input { margin-top: 10px; }
 .cl-form input[type="text"]:focus { background: rgba(255,255,255,0.14); }
@@ -804,9 +805,17 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
 .cl-opp button { margin-top: 10px; padding: 11px 16px; border: 0; border-radius: 24px; background: linear-gradient(90deg, #2bd9ff, #c24bff); color: #04102c; font: inherit; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
 .cl-opp button:disabled { background: rgba(255,255,255,0.14); color: #c9d4ea; cursor: default; }
 .cl-opp .cl-opp-msg { min-height: 1em; font-size: 12px; color: #ffd0d6; }
-#form-foot .cl-row.mail { grid-template-columns: 34px 1fr; }
-#form-foot .cl-row.mail input { width: 100%; box-sizing: border-box; padding: 14px 16px; color: white; font: inherit; font-size: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.3); }
+#form-foot .cl-row.mail, #form-padel .cl-row.mail { grid-template-columns: 34px 1fr; }
+#form-foot .cl-row.mail input, #form-padel .cl-row.mail input { width: 100%; box-sizing: border-box; padding: 14px 16px; color: white; font: inherit; font-size: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.3); }
 #form-foot .cl-row.mail input:focus { outline: 0; background: rgba(255,255,255,0.14); border-color: #2bd9ff; }
+#form-padel .cl-row.mail input:focus { outline: 0; background: rgba(255,255,255,0.14); border-color: #d4ff2a; }
+#classe-padel .cl-team-box { border-top-color: #d4ff2a; }
+#classe-padel .cl-team-box h2, #classe-padel .cl-team-members li.cap::after { color: #d4ff2a; }
+#classe-padel .cl-opp { border-left-color: #d4ff2a; }
+#classe-padel .cl-opp button { background: #d4ff2a; }
+#classe-padel .cl-opp button:disabled { background: rgba(255,255,255,0.14); }
+.cl-card input:disabled + .cl-card-body { opacity: 0.4; cursor: not-allowed; }
+.cl-card input:disabled + .cl-card-body .cl-lab::after { content: " · déjà inscrit"; }
 @media (max-width: 700px) {
   .cl { padding: 110px 6% 90px; }
   .cl-cats { gap: 10px; }
@@ -1095,29 +1104,29 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
       <div class="cl-eyebrow">UPJV SPORT · Classé</div>
       <h1>Pad<span>el</span></h1>
       <div class="cl-sub">Inscription au tournoi</div>
-      <p class="cl-lead">Choisis ton tournoi, puis inscris ton nom ou celui de ton duo avec le nom et le prénom des joueurs.</p>
+      <p class="cl-lead">Choisis ton tournoi : en 1V1 tu joues seul, en 2V2 tu ajoutes ton coéquipier grâce à l'adresse e-mail de son compte. Ton inscription est validée tout de suite.</p>
       <div class="cl-lock">
         <p class="cl-lock-title">Réservé aux membres</p>
-        <p>Pour inscrire ton duo ou toi-même aux matchs classés, crée ton compte ou connecte-toi.</p>
+        <p>Pour t'inscrire aux matchs classés, crée ton compte ou connecte-toi.</p>
         <div class="cl-lock-btns"><a href="#" class="cl-submit" data-open="modal-signup">S'inscrire</a><a href="#" class="cl-lock-alt" data-open="modal-login">J'ai déjà un compte</a></div>
       </div>
-      <form class="cl-form" id="form-padel" name="inscription-padel" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="inscription-padel">
-        <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
+      <div class="cl-team" id="padel-panel" hidden aria-live="polite"></div>
+      <form class="cl-form" id="form-padel" name="inscription-padel" novalidate>
         <div class="cl-legend">Tournoi</div>
         <div class="cl-cats two">
-          <label class="cl-card"><input type="radio" name="tournoi" value="1V1" required><span class="cl-card-body"><span class="cl-num">1V1</span><span class="cl-lab">1 contre 1</span></span></label>
-          <label class="cl-card"><input type="radio" name="tournoi" value="2V2" required><span class="cl-card-body"><span class="cl-num">2V2</span><span class="cl-lab">2 contre 2</span></span></label>
+          <label class="cl-card"><input type="radio" name="tournoi" value="1V1"><span class="cl-card-body"><span class="cl-num">1V1</span><span class="cl-lab">1 contre 1</span></span></label>
+          <label class="cl-card"><input type="radio" name="tournoi" value="2V2"><span class="cl-card-body"><span class="cl-num">2V2</span><span class="cl-lab">2 contre 2</span></span></label>
         </div>
+        <p class="cl-hint" id="padel-hint">En 1V1, ton nom de joueur sert de nom d'équipe. En 2V2, tu donnes un nom à ton duo et l'adresse e-mail du compte de ton coéquipier. Tu peux t'inscrire dans les deux tournois.</p>
         <label class="cl-field" id="padel-duo-wrap" hidden>Nom du duo
-          <input type="text" name="duo" id="padel-duo" placeholder="Ex. : Les Smashers" autocomplete="off">
+          <input type="text" id="padel-duo" placeholder="Ex. : Les Smashers" autocomplete="off" maxlength="40">
         </label>
-        <div class="cl-legend">Joueurs (nom et prénom)</div>
-        <p class="cl-hint" id="padel-hint">Choisis d'abord un tournoi pour afficher les lignes joueurs.</p>
-        <div id="padel-rows"></div>
-        <input type="hidden" name="joueurs" id="padel-joueurs">
-        <input type="hidden" name="compte" class="cl-account">
-        <label class="cl-check"><input type="checkbox" name="prerequis" value="Tous les joueurs ont déjà joué au moins un match de padel" required><span>Je confirme que <b>chaque joueur</b> inscrit a déjà joué <b>au moins un match de padel</b> (obligatoire pour les matchs classés).</span></label>
+        <div id="padel-mate-wrap" hidden>
+          <div class="cl-legend">Ton coéquipier</div>
+          <p class="cl-hint">Saisis l'adresse e-mail utilisée par ton coéquipier pour créer son compte sur le site. Il recevra un e-mail de confirmation.</p>
+          <div class="cl-row mail"><span class="cl-n">2</span><input type="email" id="padel-mate" placeholder="E-mail du compte du joueur 2" autocomplete="off" autocapitalize="none" aria-label="E-mail du coéquipier"></div>
+        </div>
+        <label class="cl-check"><input type="checkbox" name="prerequis" value="ok"><span>Je confirme que <b>chaque joueur</b> inscrit a déjà joué <b>au moins un match de padel</b> (obligatoire pour les matchs classés).</span></label>
         <button type="submit" class="cl-submit">M'inscrire</button>
         <div class="cl-status" id="padel-status" role="status"></div>
       </form>
@@ -1455,7 +1464,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         <h3>3. Règles de conduite</h3>
         <p>Vous vous engagez à respecter les autres utilisateurs, à ne communiquer que vos propres coordonnées, à ne pas usurper l'identité d'un tiers et à ne pas utiliser le site à des fins commerciales, de harcèlement ou contraires à la loi. Les éditeurs peuvent refuser une inscription, retirer un contenu ou suspendre un compte en cas de manquement.</p>
         <h3>4. Rencontres « Classé »</h3>
-        <p>Les inscriptions sont validées manuellement par l'équipe UPJV SPORT. Les conditions de participation indiquées sur chaque page (par exemple avoir déjà disputé au moins un match) doivent être respectées. Les classements sont fournis à titre informatif.</p>
+        <p>Les inscriptions sont validées automatiquement, sous réserve du respect des conditions de participation ; l'équipe UPJV SPORT peut écarter une équipe qui ne les respecte pas. Les conditions de participation indiquées sur chaque page (par exemple avoir déjà disputé au moins un match) doivent être respectées. Les classements sont fournis à titre informatif.</p>
         <h3>5. Mise en relation pour s'entraîner à deux</h3>
         <p>Le formulaire de la page Muscu permet de laisser un pseudo Instagram et/ou Snapchat et, facultativement, un numéro de téléphone. Ces coordonnées ne sont pas affichées publiquement. UPJV SPORT met en relation mais ne vérifie pas l'identité ni le niveau des personnes. Par prudence, donnez rendez-vous dans un lieu public, comme la salle de sport.</p>
         <h3>6. Santé et sécurité</h3>
@@ -2089,8 +2098,12 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         if (window.UPJV_SB) {
           try {
             const { data } = await window.UPJV_SB.rpc("public_teams");
-            const have = new Set(teams.foot.map((t) => norm(t.equipe || t.nom)));
-            (data || []).forEach((t) => { if (!have.has(norm(t.name))) teams.foot.push({ categorie: t.category, equipe: t.name }); });
+            const haveFoot = new Set(teams.foot.map((t) => norm(t.equipe || t.nom)));
+            const havePadel = new Set(teams.padel.map((t) => (t.tournoi || t.categorie) + "|" + norm(t.equipe || t.nom)));
+            (data || []).forEach((t) => {
+              if (t.category === "Foot à 5") { if (!haveFoot.has(norm(t.name))) teams.foot.push({ categorie: t.category, equipe: t.name }); }
+              else if (!havePadel.has(t.category + "|" + norm(t.name))) teams.padel.push({ tournoi: t.category, equipe: t.name });
+            });
           } catch (e) { console.warn("[UPJV SPORT · Classé] Équipes validées indisponibles", e); }
         }
         board("foot"); board("padel");
@@ -2122,7 +2135,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
       const say2 = (el, cls, t) => { el.className = "cl-status " + cls; el.textContent = t; };
       const dbError = (err) => {
         const m = (err && err.message) || "";
-        if (/duplicate key|teams_name_uq/i.test(m)) return "Ce nom d'équipe est déjà pris : choisis-en un autre.";
+        if (/duplicate key|teams_name_uq|teams_name_cat_uq/i.test(m)) return "Ce nom d'équipe est déjà pris : choisis-en un autre.";
         if (/failed to fetch|network/i.test(m)) return "Connexion impossible : vérifie ta connexion Internet.";
         return m || "Une erreur est survenue : réessaie dans un instant.";
       };
@@ -2181,28 +2194,88 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         const { data, error } = await SB.rpc("register_team", { p_name: name, p_emails: emails });
         if (error) { btn.disabled = false; return say2(fs, "err", dbError(error)); }
         const { error: mailErr } = await SB.functions.invoke("send-team-mails", { body: { type: "registered", team_id: data.team_id } });
-        btn.disabled = false; ff.reset(); addPending("foot", "Foot à 5", name);
+        btn.disabled = false; ff.reset();
         await loadMyTeam();
         if (mailErr) console.warn("[Classé] e-mails non envoyés", mailErr);
       });
 
-      // PADEL : 1 ligne en 1V1, 2 lignes et un nom de duo en 2V2
-      const pf = $("form-padel"), pr = $("padel-rows");
-      function padelRows(mode) {
-        pr.replaceChildren(); const n = mode === "2V2" ? 2 : mode === "1V1" ? 1 : 0;
-        for (let i = 0; i < n; i++) { pr.append(row(i + 1)); }
-        $("padel-hint").hidden = n > 0; $("padel-duo-wrap").hidden = mode !== "2V2"; $("padel-duo").required = mode === "2V2";
+      // PADEL : 1V1 (joueur seul) et 2V2 (duo). Mêmes comptes, mêmes e-mails et mêmes propositions de match que le foot.
+      const pf = $("form-padel"), pst = $("padel-status"), ppanel = $("padel-panel"), PCATS = ["1V1", "2V2"];
+      const pradio = (v) => pf.querySelector('input[name="tournoi"][value="' + v + '"]');
+      function padelMode(mode) {
+        $("padel-duo-wrap").hidden = mode !== "2V2"; $("padel-mate-wrap").hidden = mode !== "2V2";
       }
-      pf.querySelectorAll('input[name="tournoi"]').forEach((i) => i.addEventListener("change", () => padelRows(i.value)));
-      pf.addEventListener("submit", (e) => {
+      pf.querySelectorAll('input[name="tournoi"]').forEach((i) => i.addEventListener("change", () => padelMode(i.value)));
+      async function padelNodes(team, cat) {
+        const solo = cat === "1V1", ok = team.status === "validated";
+        const box = tx("div", "cl-team-box"), nm = tx("p", "cl-team-name", team.name);
+        nm.append(tx("span", "cl-team-state" + (ok ? " ok" : ""), ok ? "validé" : "en attente"));
+        box.append(tx("h2", "", "Mon inscription · " + cat), nm);
+        if (!solo) {
+          const ul = tx("ul", "cl-team-members");
+          (team.members || []).forEach((m) => ul.append(tx("li", m.captain ? "cap" : "", (m.prenom + " " + (m.nom || "").toUpperCase()).trim())));
+          box.append(ul);
+        }
+        box.append(tx("p", "cl-team-note", ok ? "Tu es inscrit : tu peux proposer un match aux adversaires ci-dessous." : "Ton inscription est en cours de vérification."));
+        const out = [box];
+        if (ok) {
+          const ob = tx("div", "cl-team-box"); ob.append(tx("h2", "", "Contre qui jouer · " + cat));
+          const { data: opps, error: e2 } = await SB.rpc("opponents", { p_category: cat });
+          if (e2) ob.append(tx("p", "cl-team-note", "Impossible de charger les adversaires pour le moment."));
+          else if (!opps || !opps.length) ob.append(tx("p", "cl-team-note", "Aucun adversaire inscrit en " + cat + " pour l'instant. Reviens bientôt : ils apparaîtront ici."));
+          else {
+            const grid = tx("div", "cl-opps");
+            opps.forEach((o) => {
+              const card = tx("div", "cl-opp"), btn = tx("button", "", o.already_asked ? "Proposition envoyée" : "Proposer un match"), msg = tx("span", "cl-opp-msg");
+              btn.type = "button"; btn.disabled = !!o.already_asked;
+              btn.addEventListener("click", async () => {
+                btn.disabled = true; msg.textContent = "";
+                const { error: e3 } = await SB.functions.invoke("send-team-mails", { body: { type: "challenge", from_team: team.id, to_team: o.id } });
+                if (e3) { btn.disabled = false; msg.textContent = await fnError(e3); return; }
+                btn.textContent = "Proposition envoyée"; msg.textContent = (solo ? o.name : "Le capitaine de " + o.name) + " a reçu ta proposition par e-mail.";
+              });
+              card.append(tx("b", "", o.name), tx("small", "", solo ? "Joueur en 1V1" : (o.captain_prenom ? "Capitaine : " + o.captain_prenom : "Duo inscrit")), btn, msg);
+              grid.append(card);
+            });
+            ob.append(grid);
+          }
+          out.push(ob);
+        }
+        return out;
+      }
+      async function loadPadelTeams() {
+        if (!SB || !window.UPJV_USER) { ppanel.hidden = true; pf.hidden = false; PCATS.forEach((c) => { pradio(c).disabled = false; }); return; }
+        const out = []; let free = 0;
+        for (const cat of PCATS) {
+          const { data: team, error } = await SB.rpc("my_team", { p_category: cat }), radio = pradio(cat);
+          if (error) console.warn("[Classé] my_team " + cat, error);
+          if (error || !team) { radio.disabled = false; free++; continue; }
+          radio.disabled = true; if (radio.checked) { radio.checked = false; padelMode(""); }
+          out.push(...(await padelNodes(team, cat)));
+        }
+        ppanel.replaceChildren(...out); ppanel.hidden = !out.length; pf.hidden = free === 0;
+      }
+      document.addEventListener("upjv-auth", loadPadelTeams); loadPadelTeams();
+      pf.addEventListener("submit", async (e) => {
         e.preventDefault();
-        if (!pr.children.length) { $("padel-status").className = "cl-status err"; $("padel-status").textContent = "Choisis un tournoi pour inscrire tes joueurs."; return; }
-        if (!pf.prerequis.checked) { $("padel-status").className = "cl-status err"; $("padel-status").textContent = "Pour jouer en classé, chaque joueur doit avoir déjà fait au moins un match de padel : coche la case de confirmation."; return; }
-        $("padel-joueurs").value = lines(pr);
-        const mode = pf.querySelector('input[name="tournoi"]:checked').value;
-        const first = pr.querySelector("input"), name = mode === "2V2" ? $("padel-duo").value.trim()
-          : (first.value.trim().toUpperCase() + " " + pr.querySelectorAll("input")[1].value.trim());
-        send(pf, $("padel-status"), pf.querySelector(".cl-submit"), () => { padelRows(""); addPending("padel", mode, name); goRank("classement-padel"); });
+        const checked = pf.querySelector('input[name="tournoi"]:checked'), mode = checked && checked.value;
+        if (!SB || !window.UPJV_USER) return say2(pst, "err", "Connecte-toi pour t'inscrire.");
+        if (!mode) return say2(pst, "err", "Choisis un tournoi : 1V1 ou 2V2.");
+        let name = "", emails = [];
+        if (mode === "2V2") {
+          name = $("padel-duo").value.trim(); const mate = $("padel-mate").value.trim();
+          if (name.length < 2) return say2(pst, "err", "Donne un nom à ton duo (2 caractères minimum).");
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mate)) return say2(pst, "err", "Vérifie l'adresse e-mail de ton coéquipier.");
+          emails = [mate];
+        }
+        if (!pf.prerequis.checked) return say2(pst, "err", "Pour jouer en classé, chaque joueur doit avoir déjà fait au moins un match de padel : coche la case de confirmation.");
+        const btn = pf.querySelector(".cl-submit"); btn.disabled = true; say2(pst, "", "Inscription en cours…");
+        const { data, error } = await SB.rpc("register_team", { p_name: name, p_emails: emails, p_category: mode });
+        if (error) { btn.disabled = false; return say2(pst, "err", dbError(error)); }
+        const { error: mailErr } = await SB.functions.invoke("send-team-mails", { body: { type: "registered", team_id: data.team_id } });
+        btn.disabled = false; pf.reset(); padelMode(""); say2(pst, "", "");
+        await loadPadelTeams(); loadTeams();
+        if (mailErr) console.warn("[Classé] e-mails non envoyés", mailErr);
       });
     })();
   </script>
