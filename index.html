@@ -817,6 +817,30 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
 #classe-padel .cl-manage .cl-mpop { border-left-color: #d4ff2a; }
 #classe-padel .cl-manage .cl-mpop.warn { border-left-color: #E0112B; }
 #classe-padel .cl-cand button { background: #d4ff2a; }
+body.view-admin #admin { display: block; }
+body.view-admin main.hero, body.view-admin .local { display: none; }
+body.view-admin .menu > a:first-child::after { display: none; }
+body.view-admin .menu > a[href="#admin"]::after { content: ""; position: absolute; left: 15px; right: 15px; bottom: 19px; height: 3px; background: var(--red); border-radius: 10px; }
+.menu > a[hidden] { display: none; }
+#admin { background: #0b1226; }
+#admin .cl-inner { width: min(980px, 100%); }
+#admin .cl-eyebrow { color: #E0112B; }
+#admin .cl-team-box { border-top-color: #E0112B; }
+#admin .cl-team-box h2 { color: #ff8a98; }
+.cl-line { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.12); font-size: 15px; color: white; }
+.cl-line:last-child { border-bottom: 0; }
+.cl-line .cl-grow { flex: 1 1 260px; min-width: 0; }
+.cl-line small { display: block; margin-top: 3px; font-size: 12px; color: #aeb9d0; }
+.cl-line input[type="number"] { width: 64px; padding: 8px; border: 1px solid rgba(255,255,255,0.3); background: rgba(4,8,36,0.8); color: white; font: inherit; font-size: 15px; text-align: center; }
+.cl-badge { display: inline-block; padding: 3px 10px; border: 1px solid currentColor; border-radius: 16px; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #ffd24d; }
+.cl-badge.ok { color: #5df2a0; } .cl-badge.bad { color: #ff8a98; }
+.cl-res .cl-score { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 14px; }
+.cl-res select, .cl-res input[type="number"] { padding: 10px 12px; border: 1px solid rgba(255,255,255,0.3); background: rgba(4,8,36,0.8); color: white; font: inherit; font-size: 15px; }
+.cl-res input[type="number"] { width: 70px; text-align: center; }
+.cl-res .cl-btn, .cl-res .cl-btn { padding: 11px 18px; border: 1px solid rgba(255,255,255,0.4); border-radius: 24px; background: transparent; color: white; font: inherit; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; }
+.cl-res .cl-btn.go { background: #2bd9ff; border-color: #2bd9ff; color: #04102c; }
+.cl-res .cl-btn:disabled { opacity: .5; cursor: default; }
+#admin .cl-btn.go { background: #E0112B; border-color: #E0112B; color: white; }
 .cl-opps { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin-top: 18px; }
 .cl-opp { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; background: rgba(255,255,255,0.07); border-left: 4px solid #c24bff; }
 .cl-opp b { font-size: 18px; font-weight: 900; text-transform: uppercase; color: white; }
@@ -927,6 +951,7 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
       </div>
 
       <a href="#histoire">Notre Histoire</a>
+      <a href="#admin" id="nav-admin" hidden>Admin</a>
     </nav>
 
     <div class="actions">
@@ -1081,6 +1106,16 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
   </section>
 
   <!-- CLASSÉ : FOOT -->
+  <section class="cl" id="admin">
+    <div class="cl-inner">
+      <a href="#accueil" class="cl-back">Accueil</a>
+      <div class="cl-eyebrow">UPJV SPORT · Administration</div>
+      <h1>Admin</h1>
+      <div class="cl-sub">Réservé aux organisateurs</div>
+      <div id="admin-body"></div>
+    </div>
+  </section>
+
   <section class="cl" id="classe-foot">
     <div class="cl-inner">
       <a href="#classe" class="cl-back">Classé</a>
@@ -1498,6 +1533,8 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         <h3>2. Données collectées et finalités</h3>
         <p><strong>Compte :</strong> nom, prénom, adresse e-mail et mot de passe (stocké sous forme chiffrée), pour vous permettre de vous connecter ; identifiant Snapchat et/ou Instagram (au moins un est demandé à l'inscription) et numéro de téléphone (facultatif), pour la mise en relation entre membres. Base légale : exécution du service demandé.</p>
         <p><strong>Inscriptions Classé :</strong> nom de l'équipe ou du duo, noms et prénoms des joueurs, pour organiser les rencontres et afficher les classements. Base légale : exécution du service demandé.</p>
+        <p><strong>Équipes, résultats et remplacements (Classé) :</strong> les scores annoncés par les capitaines, ainsi que l'état « infirmerie » d'un joueur, sont enregistrés pour calculer le classement. Pour permettre le remplacement d'un joueur blessé ou indisponible, les membres d'une équipe concernée peuvent consulter les prénoms et noms des membres du site qui ne sont pas encore inscrits dans le classé. Les adresses e-mail des coéquipiers saisies à l'inscription servent uniquement à les retrouver et à les prévenir. Base légale : exécution du service demandé.</p>
+        <p><strong>Administration :</strong> les organisateurs du site (Walid Fouilah et Valéry Gaotte) ont accès, via un espace réservé, aux comptes (prénom, nom, adresse e-mail), aux inscriptions et aux résultats, afin de corriger une inscription, trancher une contestation ou répondre à une demande. Cet espace est protégé : seuls les comptes organisateurs y accèdent.</p>
         <p><strong>Mise en relation (Muscu) :</strong> prénom ou pseudo, identifiant Instagram et/ou Snapchat, numéro de téléphone (facultatif) et salle souhaitée, pour vous mettre en relation avec un partenaire d'entraînement. Base légale : votre consentement, donné en cochant la case du formulaire. Vous pouvez le retirer à tout moment.</p>
         <h3>3. Destinataires et sous-traitants</h3>
         <p>Vos données ne sont ni vendues ni cédées à des fins commerciales. Elles sont traitées par : Supabase (gestion des comptes), Netlify (réception des formulaires) et GitHub (hébergement du site). Ces prestataires peuvent être situés hors de l'Union européenne, notamment aux États-Unis, avec les garanties prévues par le RGPD.</p>
@@ -1549,12 +1586,12 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
       document.querySelectorAll(".story-video").forEach(startVideo);
     }
     // Affichage direct, sans dépendre de l'adresse de la page (fonctionne aussi dans un aperçu intégré)
-    const VIEWS = { "histoire": "story", "classe-foot": "foot", "classe-padel": "padel", "classement-foot": "foot", "classement-padel": "padel", "sports": "sports", "classe": "hub" };
+    const VIEWS = { "histoire": "story", "classe-foot": "foot", "classe-padel": "padel", "classement-foot": "foot", "classement-padel": "padel", "sports": "sports", "classe": "hub", "admin": "admin" };
     const SPORT_NAMES = { foot: "Foot", basket: "Basket", padel: "Padel", tennis: "Tennis", course: "Course à pied", muscu: "Muscu", "street-workout": "Street workout", autres: "Autres sports", natation: "Natation", volley: "Volley", badminton: "Badminton", "ping-pong": "Ping-pong", combat: "Sports de combat", "foot-5": "Foot à 5", "foot-8": "Foot à 8", "foot-11": "Foot à 11" };
     const AUTRES_SUB = ["natation", "volley", "badminton", "ping-pong", "combat"]; // disciplines de la page « Autres sports »
     Object.keys(SPORT_NAMES).forEach((k) => { VIEWS["sport-" + k] = "sport"; });
     function show(id) {
-      const b = document.body, names = ["story", "foot", "padel", "sports", "sport", "hub"], view = VIEWS[id] || "home";
+      const b = document.body, names = ["story", "foot", "padel", "sports", "sport", "hub", "admin"], view = VIEWS[id] || "home";
       const was = names.find((n) => b.classList.contains("view-" + n)) || "home";
       names.forEach((n) => b.classList.toggle("view-" + n, n === view));
       b.classList.toggle("sub-rank", /^classement-/.test(id || "")); // page classement / tableau (même fond que l'inscription)
@@ -2123,6 +2160,8 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
               if (t.category === "Foot à 5") { if (!haveFoot.has(norm(t.name))) teams.foot.push({ categorie: t.category, equipe: t.name }); }
               else if (!havePadel.has(t.category + "|" + norm(t.name))) teams.padel.push({ tournoi: t.category, equipe: t.name });
             });
+            const { data: res } = await window.UPJV_SB.rpc("public_results");
+            (res || []).forEach((r) => teams.matchs_foot.push({ categorie: "Foot à 5", domicile: r.home, exterieur: r.away, score: [r.score_home, r.score_away] }));
           } catch (e) { console.warn("[UPJV SPORT · Classé] Équipes validées indisponibles", e); }
         }
         board("foot"); board("padel");
@@ -2240,6 +2279,49 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         box.append(row, zone);
         return box;
       }
+      const nm2 = (r) => (r.prenom + " " + (r.nom || "").toUpperCase()).trim();
+      // Résultats des matchs de foot : le capitaine annonce, l'adversaire confirme ou conteste
+      async function resultsBox(team, opps, reload) {
+        const { data, error } = await SB.rpc("my_results"), list = error ? [] : (data || []);
+        const box = tx("div", "cl-team-box cl-res"), zone = tx("p", "cl-opp-msg", "");
+        box.append(tx("h2", "", "Résultats des matchs"));
+        const btn = (label, cls, fn) => { const b = tx("button", "cl-btn " + (cls || ""), label); b.type = "button"; b.addEventListener("click", async () => { b.disabled = true; zone.textContent = ""; const err = await fn(); if (err) { b.disabled = false; zone.textContent = dbError(err); } else reload(); }); return b; };
+        const label = (r) => team.name + " " + r.mine + " - " + r.theirs + " " + r.other;
+        const todo = list.filter((r) => r.can_answer), rest = list.filter((r) => !r.can_answer);
+        todo.forEach((r) => {
+          const line = tx("div", "cl-line"), g = tx("div", "cl-grow");
+          g.append(tx("b", "", label(r)), tx("small", "", r.other + " annonce ce résultat. Il compte dans le classement après ta confirmation."));
+          line.append(g, btn("Confirmer", "go", async () => (await SB.rpc("answer_result", { p_id: r.id, p_accept: true })).error), btn("Contester", "", async () => (await SB.rpc("answer_result", { p_id: r.id, p_accept: false })).error));
+          box.append(line);
+        });
+        rest.forEach((r) => {
+          const line = tx("div", "cl-line"), g = tx("div", "cl-grow"), st = r.status === "confirmed" ? ["confirmé", "ok"] : r.status === "disputed" ? ["contesté", "bad"] : ["en attente", ""];
+          g.append(tx("b", "", label(r)));
+          if (r.status === "pending") g.append(tx("small", "", "En attente de la confirmation de " + r.other + "."));
+          if (r.status === "disputed") g.append(tx("small", "", "Contesté : l'équipe UPJV SPORT va trancher."));
+          line.append(g, tx("span", "cl-badge " + st[1], st[0]));
+          if (r.status === "pending" && r.entered_by_me && team.is_captain) line.append(btn("Annuler", "", async () => (await SB.rpc("cancel_result", { p_id: r.id })).error));
+          box.append(line);
+        });
+        if (!list.length) box.append(tx("p", "cl-team-note", "Aucun résultat pour l'instant. Après un match, le capitaine entre le score ici : l'équipe adverse le confirme."));
+        if (team.is_captain && opps && opps.length) {
+          const form = tx("div", "cl-score"), sel = document.createElement("select"), a = document.createElement("input"), b2 = document.createElement("input");
+          sel.setAttribute("aria-label", "Équipe adverse");
+          opps.forEach((o) => { const op = document.createElement("option"); op.value = o.id; op.textContent = o.name; sel.append(op); });
+          [a, b2].forEach((i, k) => { i.type = "number"; i.min = "0"; i.max = "99"; i.required = true; i.setAttribute("aria-label", k ? "Buts de l'adversaire" : "Buts de mon équipe"); });
+          form.append(tx("span", "", "Mon équipe"), a, tx("span", "", "contre"), sel, b2);
+          const go = btn("Envoyer au capitaine adverse", "go", async () => {
+            if (a.value === "" || b2.value === "") return { message: "Entre les deux scores." };
+            const { data: d, error: e1 } = await SB.rpc("submit_result", { p_opp: sel.value, p_mine: parseInt(a.value, 10), p_theirs: parseInt(b2.value, 10) });
+            if (e1) return e1;
+            const { error: e2 } = await SB.functions.invoke("send-team-mails", { body: { type: "result", result_id: d.result_id } });
+            if (e2) console.warn("[Classé] e-mail non envoyé", e2);
+            return null;
+          });
+          box.append(tx("p", "cl-team-note", "Tu as joué un match ? Entre le score : le capitaine adverse le confirme par e-mail."), form, go, zone);
+        } else box.append(zone);
+        return box;
+      }
       async function loadMyTeam() {
         if (!SB || !window.UPJV_USER) { panel.hidden = true; ff.hidden = false; return; }
         const { data: team, error } = await SB.rpc("my_team");
@@ -2250,10 +2332,10 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         const box = tx("div", "cl-team-box"), h = tx("h2", "", "Mon équipe"), nm = tx("p", "cl-team-name", team.name);
         nm.append(tx("span", "cl-team-state" + (ok ? " ok" : ""), ok ? "validée" : "en attente de validation"));
         box.append(h, nm, memberList(team), tx("p", "cl-team-note", ok ? "Ton équipe est validée : tu peux proposer un match aux équipes ci-dessous." : "L'équipe UPJV SPORT vérifie ton inscription. Dès qu'elle est validée, tu pourras proposer des matchs aux autres équipes."));
-        const out = [box];
+        const out = [box]; let oppsData = [];
         if (ok) {
           const ob = tx("div", "cl-team-box"); ob.append(tx("h2", "", "Contre qui jouer"));
-          const { data: opps, error: e2 } = await SB.rpc("opponents");
+          const { data: opps, error: e2 } = await SB.rpc("opponents"); oppsData = opps || [];
           if (e2) ob.append(tx("p", "cl-team-note", "Impossible de charger les équipes pour le moment."));
           else if (!opps || !opps.length) ob.append(tx("p", "cl-team-note", "Aucune autre équipe validée pour l'instant. Reviens bientôt : les équipes adverses apparaîtront ici."));
           else {
@@ -2274,7 +2356,9 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
           }
           out.push(ob);
         }
-        out.push(manageBox(team, "Foot à 5", async () => { await loadMyTeam(); loadTeams(); }));
+        const reloadFoot = async () => { await loadMyTeam(); loadTeams(); };
+        out.push(await resultsBox(team, oppsData, reloadFoot));
+        out.push(manageBox(team, "Foot à 5", reloadFoot));
         panel.replaceChildren(...out);
       }
       document.addEventListener("upjv-auth", loadMyTeam); loadMyTeam();
@@ -2370,6 +2454,57 @@ body.view-hub .classe-font .dropbtn::after { content: ""; position: absolute; le
         await loadPadelTeams(); loadTeams();
         if (mailErr) console.warn("[Classé] e-mails non envoyés", mailErr);
       });
+
+      // ADMIN : réservé aux comptes de la table « admins » (contrôlé par la base, pas seulement par ce bouton)
+      const navAdmin = $("nav-admin"), adminBody = $("admin-body");
+      async function loadAdmin() {
+        navAdmin.hidden = true;
+        if (!SB || !window.UPJV_USER) { adminBody.replaceChildren(tx("p", "cl-team-note", "Connecte-toi avec un compte organisateur.")); return; }
+        const { data: isAdm } = await SB.rpc("is_admin");
+        navAdmin.hidden = !isAdm;
+        if (!isAdm) { adminBody.replaceChildren(tx("p", "cl-team-note", "Accès réservé aux organisateurs.")); return; }
+        const { data, error } = await SB.rpc("admin_overview");
+        if (error) { adminBody.replaceChildren(tx("p", "cl-team-note", dbError(error))); return; }
+        const reload = () => loadAdmin();
+        const mk = (title) => { const b = tx("div", "cl-team-box cl-manage cl-res"); b.append(tx("h2", "", title)); return b; };
+        const act = (label, cls, fn) => { const b = tx("button", "cl-btn " + (cls || ""), label); b.type = "button"; b.addEventListener("click", async () => { if (cls && cls.includes("danger") && b.dataset.ok !== "1") { b.dataset.ok = "1"; b.textContent = "Confirmer ?"; return; } b.disabled = true; const { error: e } = await fn(); if (e) { b.disabled = false; alert(dbError(e)); } else reload(); }); return b; };
+        const out = [];
+        // résultats
+        const rb = mk("Résultats à traiter");
+        const todo = (data.results || []).filter((r) => r.status !== "confirmed"), done = (data.results || []).filter((r) => r.status === "confirmed");
+        if (!todo.length) rb.append(tx("p", "cl-team-note", "Aucun résultat en attente ni contesté."));
+        [...todo, ...done.slice(0, 15)].forEach((r) => {
+          const line = tx("div", "cl-line"), g = tx("div", "cl-grow"), a = document.createElement("input"), b2 = document.createElement("input");
+          [a, b2].forEach((i) => { i.type = "number"; i.min = "0"; i.max = "99"; });
+          a.value = r.score_a; b2.value = r.score_b;
+          g.append(tx("b", "", r.home + "  –  " + r.away), tx("small", "", "Score annoncé par " + r.home + " : " + r.score_a + " - " + r.score_b));
+          const st = r.status === "confirmed" ? ["confirmé", "ok"] : r.status === "disputed" ? ["contesté", "bad"] : ["en attente", ""];
+          line.append(g, tx("span", "cl-badge " + st[1], st[0]), a, tx("span", "", "-"), b2);
+          if (r.status !== "confirmed") line.append(act("Valider", "go", () => SB.rpc("admin_decide_result", { p_id: r.id, p_action: "confirm", p_a: parseInt(a.value, 10), p_b: parseInt(b2.value, 10) })));
+          line.append(act("Supprimer", "danger", () => SB.rpc("admin_decide_result", { p_id: r.id, p_action: "delete" })));
+          rb.append(line);
+        });
+        out.push(rb);
+        // équipes
+        const tb = mk("Inscriptions · " + (data.teams || []).length);
+        if (!(data.teams || []).length) tb.append(tx("p", "cl-team-note", "Aucune inscription pour l'instant."));
+        (data.teams || []).forEach((t) => {
+          const line = tx("div", "cl-line"), g = tx("div", "cl-grow");
+          g.append(tx("b", "", t.name + "  ·  " + (t.category === "Foot à 5" ? "Foot à 5" : "Padel " + t.category)));
+          g.append(tx("small", "", (t.members || []).map((m) => nm2(m) + (m.captain ? " (capitaine)" : "") + (m.infirmary ? " (infirmerie)" : "") + " <" + m.email + ">").join("  ·  ")));
+          line.append(g, act("Supprimer", "danger", () => SB.rpc("admin_delete_team", { p_id: t.id })));
+          tb.append(line);
+        });
+        out.push(tb);
+        // comptes
+        const ub = mk("Comptes · " + (data.users || []).length), q = document.createElement("input"), list = tx("div", "");
+        q.type = "search"; q.placeholder = "Rechercher un nom ou un e-mail"; q.setAttribute("aria-label", "Rechercher un compte");
+        q.style.cssText = "width:100%;max-width:420px;margin:6px 0 12px;padding:11px 14px;border:1px solid rgba(255,255,255,0.3);background:rgba(4,8,36,0.8);color:white;font:inherit;font-size:15px";
+        const draw = () => { const f = q.value.trim().toLowerCase(); list.replaceChildren(...(data.users || []).filter((u) => (nm2(u) + " " + u.email).toLowerCase().includes(f)).slice(0, 100).map((u) => { const l = tx("div", "cl-line"), g = tx("div", "cl-grow"); g.append(tx("b", "", nm2(u) || "—"), tx("small", "", u.email)); l.append(g); return l; })); };
+        q.addEventListener("input", draw); draw(); ub.append(q, list); out.push(ub);
+        adminBody.replaceChildren(...out);
+      }
+      document.addEventListener("upjv-auth", loadAdmin); loadAdmin();
     })();
   </script>
 
