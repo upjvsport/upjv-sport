@@ -841,6 +841,16 @@ body.view-admin .menu > a[href="#admin"]::after { content: ""; position: absolut
 .cl-res .cl-btn.go { background: #2bd9ff; border-color: #2bd9ff; color: #04102c; }
 .cl-res .cl-btn:disabled { opacity: .5; cursor: default; }
 #admin .cl-btn.go { background: #E0112B; border-color: #E0112B; color: white; }
+.cl-pending { max-width: 560px; margin-bottom: 30px; padding: 22px 26px; background: rgba(4,8,36,0.72); border: 1px solid rgba(255,255,255,0.18); border-left: 4px solid #ffd24d; color: #dfe7f5; font-size: 16px; line-height: 1.55; }
+.cl-pending[hidden] { display: none; }
+.cl-pending p { margin: 0; }
+.cl-pending .cl-lock-title { margin-bottom: 8px; font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #ffd24d; }
+body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !important; }
+.cl-line .cl-choice { flex: 1 1 100%; margin-top: 6px; padding: 16px 18px; background: rgba(255,255,255,0.06); border-left: 4px solid #E0112B; }
+.cl-line .cl-choice label { display: block; margin: 10px 0; font-size: 15px; cursor: pointer; }
+.cl-line .cl-choice label small { display: block; margin: 2px 0 0 26px; font-size: 12px; color: #aeb9d0; }
+.cl-line .cl-choice input { margin-right: 10px; }
+.cl-line .cl-choice .cl-mrow { margin-top: 12px; }
 .cl-opps { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin-top: 18px; }
 .cl-opp { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; background: rgba(255,255,255,0.07); border-left: 4px solid #c24bff; }
 .cl-opp b { font-size: 18px; font-weight: 900; text-transform: uppercase; color: white; }
@@ -1123,6 +1133,10 @@ body.view-admin .menu > a[href="#admin"]::after { content: ""; position: absolut
       <h1>Football</h1>
       <div class="cl-sub">Inscription des équipes</div>
       <p class="cl-lead">Le classé se joue en foot à 5 : donne le nom de ton équipe et ajoute tes quatre coéquipiers grâce à l'adresse e-mail de leur compte. Tu es le capitaine.</p>
+      <div class="cl-pending" hidden>
+        <p class="cl-lock-title">Compte en attente de validation</p>
+        <p>Un administrateur doit valider ton compte avant que tu puisses t'inscrire ou jouer. Reviens bientôt : dès qu'il est validé, tout est de nouveau disponible.</p>
+      </div>
       <div class="cl-lock">
         <p class="cl-lock-title">Réservé aux membres</p>
         <p>Pour inscrire ton équipe aux matchs classés, crée ton compte ou connecte-toi.</p>
@@ -1159,6 +1173,10 @@ body.view-admin .menu > a[href="#admin"]::after { content: ""; position: absolut
       <h1>Pad<span>el</span></h1>
       <div class="cl-sub">Inscription au tournoi</div>
       <p class="cl-lead">Choisis ton tournoi : en 1V1 tu joues seul, en 2V2 tu ajoutes ton coéquipier grâce à l'adresse e-mail de son compte. Ton inscription est validée tout de suite.</p>
+      <div class="cl-pending" hidden>
+        <p class="cl-lock-title">Compte en attente de validation</p>
+        <p>Un administrateur doit valider ton compte avant que tu puisses t'inscrire ou jouer. Reviens bientôt : dès qu'il est validé, tout est de nouveau disponible.</p>
+      </div>
       <div class="cl-lock">
         <p class="cl-lock-title">Réservé aux membres</p>
         <p>Pour t'inscrire aux matchs classés, crée ton compte ou connecte-toi.</p>
@@ -1534,7 +1552,7 @@ body.view-admin .menu > a[href="#admin"]::after { content: ""; position: absolut
         <p><strong>Compte :</strong> nom, prénom, adresse e-mail et mot de passe (stocké sous forme chiffrée), pour vous permettre de vous connecter ; identifiant Snapchat et/ou Instagram (au moins un est demandé à l'inscription) et numéro de téléphone (facultatif), pour la mise en relation entre membres. Base légale : exécution du service demandé.</p>
         <p><strong>Inscriptions Classé :</strong> nom de l'équipe ou du duo, noms et prénoms des joueurs, pour organiser les rencontres et afficher les classements. Base légale : exécution du service demandé.</p>
         <p><strong>Équipes, résultats et remplacements (Classé) :</strong> les scores annoncés par les capitaines, ainsi que l'état « infirmerie » d'un joueur, sont enregistrés pour calculer le classement. Pour permettre le remplacement d'un joueur blessé ou indisponible, les membres d'une équipe concernée peuvent consulter les prénoms et noms des membres du site qui ne sont pas encore inscrits dans le classé. Les adresses e-mail des coéquipiers saisies à l'inscription servent uniquement à les retrouver et à les prévenir. Base légale : exécution du service demandé.</p>
-        <p><strong>Administration :</strong> les organisateurs du site (Walid Fouilah et Valéry Gaotte) ont accès, via un espace réservé, aux comptes (prénom, nom, adresse e-mail), aux inscriptions et aux résultats, afin de corriger une inscription, trancher une contestation ou répondre à une demande. Cet espace est protégé : seuls les comptes organisateurs y accèdent.</p>
+        <p><strong>Administration :</strong> les organisateurs du site (Walid Fouilah et Valéry Gaotte) ont accès, via un espace réservé, aux comptes (prénom, nom, adresse e-mail), aux inscriptions et aux résultats, afin de corriger une inscription, trancher une contestation ou répondre à une demande. Cet espace est protégé : seuls les comptes organisateurs y accèdent. Un organisateur peut supprimer un compte. Lorsque la suppression est décidée par l'organisation, l'adresse e-mail concernée est conservée dans une liste de contrôle afin que tout nouveau compte créé avec cette adresse soit validé par un organisateur avant de pouvoir s'inscrire ; une suppression « sans motif » ne conserve aucune adresse.</p>
         <p><strong>Mise en relation (Muscu) :</strong> prénom ou pseudo, identifiant Instagram et/ou Snapchat, numéro de téléphone (facultatif) et salle souhaitée, pour vous mettre en relation avec un partenaire d'entraînement. Base légale : votre consentement, donné en cochant la case du formulaire. Vous pouvez le retirer à tout moment.</p>
         <h3>3. Destinataires et sous-traitants</h3>
         <p>Vos données ne sont ni vendues ni cédées à des fins commerciales. Elles sont traitées par : Supabase (gestion des comptes), Netlify (réception des formulaires) et GitHub (hébergement du site). Ces prestataires peuvent être situés hors de l'Union européenne, notamment aux États-Unis, avec les garanties prévues par le RGPD.</p>
@@ -2467,7 +2485,7 @@ body.view-admin .menu > a[href="#admin"]::after { content: ""; position: absolut
         if (error) { adminBody.replaceChildren(tx("p", "cl-team-note", dbError(error))); return; }
         const reload = () => loadAdmin();
         const mk = (title) => { const b = tx("div", "cl-team-box cl-manage cl-res"); b.append(tx("h2", "", title)); return b; };
-        const act = (label, cls, fn) => { const b = tx("button", "cl-btn " + (cls || ""), label); b.type = "button"; b.addEventListener("click", async () => { if (cls && cls.includes("danger") && b.dataset.ok !== "1") { b.dataset.ok = "1"; b.textContent = "Confirmer ?"; return; } b.disabled = true; const { error: e } = await fn(); if (e) { b.disabled = false; alert(dbError(e)); } else reload(); }); return b; };
+        const act = (label, cls, fn) => { const b = tx("button", "cl-btn " + (cls || ""), label); b.type = "button"; b.addEventListener("click", async () => { if (cls && cls.includes("danger") && !cls.includes("solid") && b.dataset.ok !== "1") { b.dataset.ok = "1"; b.textContent = "Confirmer ?"; return; } b.disabled = true; const { error: e } = await fn(); if (e) { b.disabled = false; alert(dbError(e)); } else reload(); }); return b; };
         const out = [];
         // résultats
         const rb = mk("Résultats à traiter");
@@ -2500,11 +2518,34 @@ body.view-admin .menu > a[href="#admin"]::after { content: ""; position: absolut
         const ub = mk("Comptes · " + (data.users || []).length), q = document.createElement("input"), list = tx("div", "");
         q.type = "search"; q.placeholder = "Rechercher un nom ou un e-mail"; q.setAttribute("aria-label", "Rechercher un compte");
         q.style.cssText = "width:100%;max-width:420px;margin:6px 0 12px;padding:11px 14px;border:1px solid rgba(255,255,255,0.3);background:rgba(4,8,36,0.8);color:white;font:inherit;font-size:15px";
-        const draw = () => { const f = q.value.trim().toLowerCase(); list.replaceChildren(...(data.users || []).filter((u) => (nm2(u) + " " + u.email).toLowerCase().includes(f)).slice(0, 100).map((u) => { const l = tx("div", "cl-line"), g = tx("div", "cl-grow"); g.append(tx("b", "", nm2(u) || "—"), tx("small", "", u.email)); l.append(g); return l; })); };
+        const delPanel = (u, l) => {
+          if (l.querySelector(".cl-choice")) return;
+          const pan = tx("div", "cl-choice"), name = nm2(u) || u.email;
+          pan.append(tx("p", "cl-team-note", "Le compte de " + name + " sera supprimé, ainsi que les équipes dont il est capitaine. Choisis le motif :"));
+          const mk2 = (v, t, sub) => { const lab = document.createElement("label"), r = document.createElement("input"); r.type = "radio"; r.name = "mode-" + u.id; r.value = v; lab.append(r, t, tx("small", "", sub)); return [lab, r]; };
+          const [l1, r1] = mk2("none", "Sans motif", "La personne pourra se réinscrire librement."), [l2, r2] = mk2("admin", "Choix de l'admin", "Si la personne se réinscrit, son compte restera en attente jusqu'à validation par un admin.");
+          const row2 = tx("div", "cl-mrow"), ok = act("Supprimer le compte", "danger solid", () => SB.rpc("admin_delete_user", { p_id: u.id, p_mode: (pan.querySelector("input:checked") || {}).value || "" })), no = tx("button", "cl-btn", "Annuler");
+          no.type = "button"; no.addEventListener("click", () => pan.remove());
+          ok.disabled = true; [r1, r2].forEach((r) => r.addEventListener("change", () => { ok.disabled = false; }));
+          row2.append(ok, no); pan.append(l1, l2, row2); l.append(pan);
+        };
+        const draw = () => { const f = q.value.trim().toLowerCase(); list.replaceChildren(...(data.users || []).filter((u) => (nm2(u) + " " + u.email).toLowerCase().includes(f)).slice(0, 100).map((u) => {
+          const l = tx("div", "cl-line"), g = tx("div", "cl-grow"); g.append(tx("b", "", nm2(u) || "—"), tx("small", "", u.email)); l.append(g);
+          if (u.admin) l.append(tx("span", "cl-badge ok", "admin"));
+          if (u.pending) { l.append(tx("span", "cl-badge", "en attente"), act("Valider", "go", () => SB.rpc("admin_approve_user", { p_id: u.id }))); }
+          if (!u.admin && !(window.UPJV_USER && window.UPJV_USER.email && u.email === window.UPJV_USER.email)) { const d = tx("button", "cl-btn danger", "Supprimer"); d.type = "button"; d.addEventListener("click", () => delPanel(u, l)); l.append(d); }
+          return l; })); };
         q.addEventListener("input", draw); draw(); ub.append(q, list); out.push(ub);
         adminBody.replaceChildren(...out);
       }
       document.addEventListener("upjv-auth", loadAdmin); loadAdmin();
+      async function loadPending() {
+        let p = false;
+        if (SB && window.UPJV_USER) { const { data } = await SB.rpc("account_pending"); p = data === true; }
+        document.body.classList.toggle("acct-pending", p);
+        document.querySelectorAll(".cl-pending").forEach((e) => { e.hidden = !p; });
+      }
+      document.addEventListener("upjv-auth", loadPending); loadPending();
     })();
   </script>
 
