@@ -833,6 +833,14 @@ body.view-admin .menu > a[href="#admin"]::after { content: ""; position: absolut
 .cl-line small { display: block; margin-top: 3px; font-size: 12px; color: #aeb9d0; }
 .cl-line input[type="number"] { width: 64px; padding: 8px; border: 1px solid rgba(255,255,255,0.3); background: rgba(4,8,36,0.8); color: white; font: inherit; font-size: 15px; text-align: center; }
 .cl-badge { display: inline-block; padding: 3px 10px; border: 1px solid currentColor; border-radius: 16px; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #ffd24d; }
+.cl-contacts { flex: 1 1 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.cl-contact { display: flex; flex-direction: column; gap: 6px; padding: 12px; border: 1px solid rgba(255,255,255,0.18); background: rgba(4,8,36,0.55); }
+.cl-contact b { font-size: 14px; }
+.cl-social { color: #d4ff2a; font-size: 13px; font-weight: 700; text-decoration: none; word-break: break-all; }
+.cl-social:hover { text-decoration: underline; }
+.cl-formcol { text-align: right; white-space: nowrap; }
+.cl-f { display: inline-block; width: 20px; height: 20px; margin-left: 3px; line-height: 20px; text-align: center; font-style: normal; font-size: 11px; font-weight: 800; color: #04102a; }
+.cl-f.w { background: #5df2a0; } .cl-f.l { background: #ff8a98; }
 .cl-badge.ok { color: #5df2a0; } .cl-badge.bad { color: #ff8a98; }
 .cl-res .cl-score { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 14px; }
 .cl-res select, .cl-res input[type="number"] { padding: 10px 12px; border: 1px solid rgba(255,255,255,0.3); background: rgba(4,8,36,0.8); color: white; font: inherit; font-size: 15px; }
@@ -1202,13 +1210,13 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         <button type="submit" class="cl-submit">M'inscrire</button>
         <div class="cl-status" id="padel-status" role="status"></div>
       </form>
-      <a href="#classement-padel" class="cl-link">Voir le tableau du tournoi →</a>
+      <a href="#classement-padel" class="cl-link">Voir le classement →</a>
     </div>
     <div class="cl-inner cl-rank">
       <a href="#classe-padel" class="cl-back">Inscription</a>
       <div class="cl-eyebrow">UPJV SPORT · Classé</div>
-      <h1>Ta<span>bleau</span></h1>
-      <div class="cl-sub">Tournoi de padel · élimination directe</div>
+      <h1>Clas<span>sement</span></h1>
+      <div class="cl-sub">Padel · victoires et défaites, comme en MMA</div>
       <div class="cl-board" id="board-padel" aria-live="polite"></div>
     </div>
   </section>
@@ -1551,7 +1559,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         <h3>2. Données collectées et finalités</h3>
         <p><strong>Compte :</strong> nom, prénom, adresse e-mail et mot de passe (stocké sous forme chiffrée), pour vous permettre de vous connecter ; identifiant Snapchat et/ou Instagram (au moins un est demandé à l'inscription) et numéro de téléphone (facultatif), pour la mise en relation entre membres. Base légale : exécution du service demandé.</p>
         <p><strong>Inscriptions Classé :</strong> nom de l'équipe ou du duo, noms et prénoms des joueurs, pour organiser les rencontres et afficher les classements. Base légale : exécution du service demandé.</p>
-        <p><strong>Équipes, résultats et remplacements (Classé) :</strong> les scores annoncés par les capitaines, ainsi que l'état « infirmerie » d'un joueur, sont enregistrés pour calculer le classement. Pour permettre le remplacement d'un joueur blessé ou indisponible, les membres d'une équipe concernée peuvent consulter les prénoms et noms des membres du site qui ne sont pas encore inscrits dans le classé. Les adresses e-mail des coéquipiers saisies à l'inscription servent uniquement à les retrouver et à les prévenir. Base légale : exécution du service demandé.</p>
+        <p><strong>Équipes, résultats et remplacements (Classé) :</strong> les scores annoncés par les capitaines, ainsi que l'état « infirmerie » d'un joueur, sont enregistrés pour calculer le classement. Pour permettre le remplacement d'un joueur blessé ou indisponible, les membres d'une équipe concernée peuvent consulter les prénoms et noms des membres du site qui ne sont pas encore inscrits dans le classé. Quand une équipe accepte une proposition de match, les joueurs des deux équipes peuvent voir le Snapchat et l'Instagram des joueurs adverses (uniquement ceux du match) pour s'organiser. Les adresses e-mail des coéquipiers saisies à l'inscription servent uniquement à les retrouver et à les prévenir. Base légale : exécution du service demandé.</p>
         <p><strong>Administration :</strong> les organisateurs du site (Walid Fouilah et Valéry Gaotte) ont accès, via un espace réservé, aux comptes (prénom, nom, adresse e-mail), aux inscriptions et aux résultats, afin de corriger une inscription, trancher une contestation ou répondre à une demande. Cet espace est protégé : seuls les comptes organisateurs y accèdent. Un organisateur peut supprimer un compte. Lorsque la suppression est décidée par l'organisation, l'adresse e-mail concernée est conservée dans une liste de contrôle afin que tout nouveau compte créé avec cette adresse soit validé par un organisateur avant de pouvoir s'inscrire ; une suppression « sans motif » ne conserve aucune adresse.</p>
         <p><strong>Mise en relation (Muscu) :</strong> prénom ou pseudo, identifiant Instagram et/ou Snapchat, numéro de téléphone (facultatif) et salle souhaitée, pour vous mettre en relation avec un partenaire d'entraînement. Base légale : votre consentement, donné en cochant la case du formulaire. Vous pouvez le retirer à tout moment.</p>
         <h3>3. Destinataires et sous-traitants</h3>
@@ -2059,9 +2067,9 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
       // + les inscriptions envoyées depuis ce navigateur, affichées « en attente » jusqu'à leur validation.
       const TEAMS_URLS = ["https://raw.githubusercontent.com/upjvsport/upjv-sport/main/equipes.json", "equipes.json"];
       const POOLS = { foot: ["Foot à 5"], padel: ["1V1", "2V2"] };
-      const POOL_LABEL = { "1V1": "Tournoi 1 contre 1", "2V2": "Tournoi 2 contre 2" };
+      const POOL_LABEL = { "1V1": "1 contre 1", "2V2": "2 contre 2" };
       const norm = (t) => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
-      let teams = { foot: [], padel: [] };
+      let teams = { foot: [], padel: [], matchs_foot: [], matchs_padel: [] };
       const pendingKey = "upjv-classe-en-attente";
       const getPending = () => { try { return JSON.parse(localStorage.getItem(pendingKey)) || { foot: [], padel: [] }; } catch (e) { return { foot: [], padel: [] }; } };
       function addPending(sport, pool, name) {
@@ -2082,32 +2090,17 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         return [...rows.values()].sort((u, v) => pts(v) - pts(u) || (v.bp - v.bc) - (u.bp - u.bc) || v.bp - u.bp || u.nom.localeCompare(v.nom, "fr"))
           .map((r) => ({ ...r, pts: pts(r), diff: r.bp - r.bc }));
       }
-      // PADEL : tableau à élimination directe (ordre d'inscription, exempts si le nombre n'est pas une puissance de 2).
-      function roundName(players) { return { 2: "Finale", 4: "Demi-finales", 8: "Quarts de finale", 16: "Huitièmes de finale", 32: "Seizièmes de finale" }[players] || ""; }
-      function padelBracket(pool, list, results) {
-        let size = 2; while (size < list.length) size *= 2;
-        const res = results.filter((m) => m.tournoi === pool);
-        const find = (r, i) => res.find((m) => Number(m.tour) === r && Number(m.match) === i);
-        const rounds = []; let slots = [];
-        for (let i = 0; i < size / 2; i++) {
-          const fixed = find(1, i + 1);
-          slots.push(fixed && Array.isArray(fixed.joueurs) ? fixed.joueurs.slice(0, 2) : [list[i] ? list[i].nom : null, list[size - 1 - i] ? list[size - 1 - i].nom : null]);
-        }
-        for (let r = 1; slots.length; r++) {
-          const matches = slots.map(([x, y], i) => {
-            const m = find(r, i + 1);
-            let win = m && m.vainqueur ? m.vainqueur : null;
-            if (!win && x && !y && r === 1) win = x; // exempt
-            if (!win && y && !x && r === 1) win = y;
-            return { x, y, win, score: m && m.score ? m.score : "", bye: r === 1 && (!x || !y) };
-          });
-          rounds.push({ name: roundName(slots.length * 2) || "Tour " + r, matches });
-          if (slots.length === 1) break;
-          const next = [];
-          for (let i = 0; i < matches.length; i += 2) next.push([matches[i].win, matches[i + 1].win]);
-          slots = next;
-        }
-        return rounds;
+      // PADEL : classement façon MMA / UFC — fiche victoires-défaites (pas de points), les plus victorieux en tête.
+      function padelRecord(pool, list, results) {
+        const rows = new Map(list.map((t) => [norm(t.nom), { nom: t.nom, pending: t.pending, v: 0, d: 0, sw: 0, sl: 0, form: [] }]));
+        results.filter((m) => m.tournoi === pool && Array.isArray(m.score) && m.score.length === 2).forEach((m) => {
+          const h = rows.get(norm(m.domicile)), a = rows.get(norm(m.exterieur)), [x, y] = m.score.map(Number);
+          if (!h || !a || isNaN(x) || isNaN(y) || x === y) return;
+          h.sw += x; h.sl += y; a.sw += y; a.sl += x;
+          const w = x > y ? h : a, l = x > y ? a : h; w.v++; l.d++; w.form.push("V"); l.form.push("D");
+        });
+        const rate = (r) => (r.v + r.d ? r.v / (r.v + r.d) : 0);
+        return [...rows.values()].sort((u, v) => v.v - u.v || u.d - v.d || rate(v) - rate(u) || (v.sw - v.sl) - (u.sw - u.sl) || u.nom.localeCompare(v.nom, "fr"));
       }
       function board(sport) {
         const box = $("board-" + sport); if (!box) return;
@@ -2137,20 +2130,19 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
               tb.append(thead, body); wrap.append(tb); sec.append(wrap);
             }
           } else {
-            if (list.length < 2) sec.append(mk("p", "cl-empty", list.length ? "1 inscrit pour l'instant : le tableau s'affichera dès le 2e inscrit." : "Aucun inscrit pour l'instant. Sois le premier !"));
+            const rows = padelRecord(pool, list, teams.matchs_padel || []);
+            if (!rows.length) sec.append(mk("p", "cl-empty", "Aucun inscrit pour l'instant. Sois le premier !"));
             else {
-              const br = mk("div", "cl-bracket");
-              padelBracket(pool, list, teams.matchs_padel || []).forEach((round) => {
-                const col = mk("div", "cl-round"); col.append(mk("h4", "", round.name));
-                round.matches.forEach((m) => {
-                  const box = mk("div", "cl-match");
-                  [m.x, m.y].forEach((name) => box.append(mk("div", !name ? "tbd" : (m.win && m.win === name ? "win" : ""), name || (m.bye ? "Exempt" : "À déterminer"))));
-                  if (m.score) box.append(mk("small", "", m.score));
-                  col.append(box);
-                });
-                br.append(col);
+              const wrap = mk("div", "cl-table-wrap"), tb = mk("table", "cl-table"), head = mk("tr");
+              [["#", "pos"], [pool === "1V1" ? "Joueur" : "Duo", "t"], ["Fiche", ""], ["V", ""], ["D", ""], ["Forme", "cl-formcol"]].forEach(([l, c]) => head.append(mk("th", c, l)));
+              const thead = mk("thead"); thead.append(head); const body = mk("tbody");
+              rows.forEach((r, i) => {
+                const tr = mk("tr"), name = mk("td", "t", r.nom), form = mk("td", "cl-formcol");
+                r.form.slice(-5).forEach((f) => form.append(mk("i", "cl-f " + (f === "V" ? "w" : "l"), f)));
+                tr.append(mk("td", "pos", String(i + 1)), name, mk("td", "pts", r.v + "-" + r.d), mk("td", "", String(r.v)), mk("td", "", String(r.d)), form);
+                body.append(tr);
               });
-              sec.append(br);
+              tb.append(thead, body); wrap.append(tb); sec.append(wrap);
             }
             if (waiting.length) sec.append(mk("p", "cl-note", "En attente de validation : " + waiting.map((t) => t.nom).join(", ")));
           }
@@ -2178,8 +2170,12 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
               if (t.category === "Foot à 5") { if (!haveFoot.has(norm(t.name))) teams.foot.push({ categorie: t.category, equipe: t.name }); }
               else if (!havePadel.has(t.category + "|" + norm(t.name))) teams.padel.push({ tournoi: t.category, equipe: t.name });
             });
-            const { data: res } = await window.UPJV_SB.rpc("public_results");
+            const { data: res } = await window.UPJV_SB.rpc("public_results", { p_category: "Foot à 5" });
             (res || []).forEach((r) => teams.matchs_foot.push({ categorie: "Foot à 5", domicile: r.home, exterieur: r.away, score: [r.score_home, r.score_away] }));
+            for (const c of ["1V1", "2V2"]) {
+              const { data: pr } = await window.UPJV_SB.rpc("public_results", { p_category: c });
+              (pr || []).forEach((r) => teams.matchs_padel.push({ tournoi: c, domicile: r.home, exterieur: r.away, score: [r.score_home, r.score_away] }));
+            }
           } catch (e) { console.warn("[UPJV SPORT · Classé] Équipes validées indisponibles", e); }
         }
         board("foot"); board("padel");
@@ -2299,10 +2295,11 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
       }
       const nm2 = (r) => (r.prenom + " " + (r.nom || "").toUpperCase()).trim();
       // Résultats des matchs de foot : le capitaine annonce, l'adversaire confirme ou conteste
-      async function resultsBox(team, opps, reload) {
-        const { data, error } = await SB.rpc("my_results"), list = error ? [] : (data || []);
+      async function resultsBox(team, opps, reload, cat) {
+        cat = cat || "Foot à 5"; const padel = cat !== "Foot à 5";
+        const { data, error } = await SB.rpc("my_results", { p_category: cat }), list = error ? [] : (data || []);
         const box = tx("div", "cl-team-box cl-res"), zone = tx("p", "cl-opp-msg", "");
-        box.append(tx("h2", "", "Résultats des matchs"));
+        box.append(tx("h2", "", padel ? "Résultats · " + cat : "Résultats des matchs"));
         const btn = (label, cls, fn) => { const b = tx("button", "cl-btn " + (cls || ""), label); b.type = "button"; b.addEventListener("click", async () => { b.disabled = true; zone.textContent = ""; const err = await fn(); if (err) { b.disabled = false; zone.textContent = dbError(err); } else reload(); }); return b; };
         const label = (r) => team.name + " " + r.mine + " - " + r.theirs + " " + r.other;
         const todo = list.filter((r) => r.can_answer), rest = list.filter((r) => !r.can_answer);
@@ -2321,23 +2318,60 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
           if (r.status === "pending" && r.entered_by_me && team.is_captain) line.append(btn("Annuler", "", async () => (await SB.rpc("cancel_result", { p_id: r.id })).error));
           box.append(line);
         });
-        if (!list.length) box.append(tx("p", "cl-team-note", "Aucun résultat pour l'instant. Après un match, le capitaine entre le score ici : l'équipe adverse le confirme."));
+        if (!list.length) box.append(tx("p", "cl-team-note", (padel ? "Aucun résultat pour l'instant. Après un match, entre le score en sets ici : l'adversaire le confirme et ta fiche victoires-défaites se met à jour." : "Aucun résultat pour l'instant. Après un match, le capitaine entre le score ici : l'équipe adverse le confirme.")));
         if (team.is_captain && opps && opps.length) {
           const form = tx("div", "cl-score"), sel = document.createElement("select"), a = document.createElement("input"), b2 = document.createElement("input");
           sel.setAttribute("aria-label", "Équipe adverse");
           opps.forEach((o) => { const op = document.createElement("option"); op.value = o.id; op.textContent = o.name; sel.append(op); });
-          [a, b2].forEach((i, k) => { i.type = "number"; i.min = "0"; i.max = "99"; i.required = true; i.setAttribute("aria-label", k ? "Buts de l'adversaire" : "Buts de mon équipe"); });
-          form.append(tx("span", "", "Mon équipe"), a, tx("span", "", "contre"), sel, b2);
-          const go = btn("Envoyer au capitaine adverse", "go", async () => {
+          [a, b2].forEach((i, k) => { i.type = "number"; i.min = "0"; i.max = "99"; i.required = true; i.setAttribute("aria-label", k ? "Score de l'adversaire" : "Mon score"); if (padel) i.max = "9"; });
+          form.append(tx("span", "", padel ? "Moi" : "Mon équipe"), a, tx("span", "", "contre"), sel, b2);
+          const go = btn(padel && cat === "1V1" ? "Envoyer à l'adversaire" : "Envoyer au capitaine adverse", "go", async () => {
             if (a.value === "" || b2.value === "") return { message: "Entre les deux scores." };
-            const { data: d, error: e1 } = await SB.rpc("submit_result", { p_opp: sel.value, p_mine: parseInt(a.value, 10), p_theirs: parseInt(b2.value, 10) });
+            const { data: d, error: e1 } = await SB.rpc("submit_result", { p_opp: sel.value, p_mine: parseInt(a.value, 10), p_theirs: parseInt(b2.value, 10), p_category: cat });
             if (e1) return e1;
             const { error: e2 } = await SB.functions.invoke("send-team-mails", { body: { type: "result", result_id: d.result_id } });
             if (e2) console.warn("[Classé] e-mail non envoyé", e2);
             return null;
           });
-          box.append(tx("p", "cl-team-note", "Tu as joué un match ? Entre le score : le capitaine adverse le confirme par e-mail."), form, go, zone);
+          box.append(tx("p", "cl-team-note", (padel ? "Tu as joué un match ? Entre les sets gagnés de chaque côté (pas d'égalité) : l'adversaire confirme par e-mail." : "Tu as joué un match ? Entre le score : le capitaine adverse le confirme par e-mail.")), form, go, zone);
         } else box.append(zone);
+        return box;
+      }
+      // Organisation des matchs : le destinataire accepte, puis chacun voit le Snapchat / Instagram des joueurs adverses
+      async function contactsBox(cat, reload) {
+        const { data, error } = await SB.rpc("my_matches", { p_category: cat }), list = error ? [] : (data || []);
+        const box = tx("div", "cl-team-box cl-res"), zone = tx("p", "cl-opp-msg", "");
+        box.append(tx("h2", "", "Organiser un match" + (cat === "Foot à 5" ? "" : " · " + cat)));
+        const btn = (label, cls, fn) => { const b = tx("button", "cl-btn " + (cls || ""), label); b.type = "button"; b.addEventListener("click", async () => { b.disabled = true; zone.textContent = ""; const { error: er } = await fn(); if (er) { b.disabled = false; zone.textContent = dbError(er); } else reload(); }); return b; };
+        const link = (kind, v) => {
+          const h = String(v || "").replace(/^@+/, ""); if (!h) return null;
+          const a = document.createElement("a"); a.className = "cl-social"; a.target = "_blank"; a.rel = "noopener noreferrer";
+          a.href = kind === "snap" ? "https://www.snapchat.com/add/" + encodeURIComponent(h) : "https://www.instagram.com/" + encodeURIComponent(h) + "/";
+          a.textContent = (kind === "snap" ? "Snapchat · " : "Instagram · ") + h; return a;
+        };
+        list.forEach((r) => {
+          const line = tx("div", "cl-line"), g = tx("div", "cl-grow");
+          if (r.status === "pending") {
+            g.append(tx("b", "", r.other), tx("small", "", r.direction === "received" ? r.other + " te propose un match. Accepte pour échanger vos contacts et vous organiser." : "En attente de la réponse de " + r.other + "."));
+            line.append(g);
+            if (r.can_answer) line.append(btn("Accepter", "go", () => SB.rpc("answer_match", { p_id: r.id, p_accept: true })), btn("Refuser", "", () => SB.rpc("answer_match", { p_id: r.id, p_accept: false })));
+            else line.append(tx("span", "cl-badge", "en attente"));
+          } else {
+            g.append(tx("b", "", "Match accepté contre " + r.other), tx("small", "", "Contactez-vous pour fixer le lieu et l'heure. Les contacts ne sont visibles que par les équipes du match."));
+            line.append(g, tx("span", "cl-badge ok", "accepté"));
+            const ppl = tx("div", "cl-contacts");
+            (r.members || []).forEach((m) => {
+              const row = tx("div", "cl-contact"); row.append(tx("b", "", (m.prenom + " " + (m.nom || "").toUpperCase()).trim() + (m.captain ? " · capitaine" : "")));
+              const a1 = link("snap", m.snapchat), a2 = link("insta", m.instagram);
+              if (a1) row.append(a1); if (a2) row.append(a2); if (!a1 && !a2) row.append(tx("small", "", "Aucun réseau renseigné."));
+              ppl.append(row);
+            });
+            line.append(ppl);
+          }
+          box.append(line);
+        });
+        if (!list.length) box.append(tx("p", "cl-team-note", "Aucune proposition pour l'instant. Propose un match à une équipe ci-dessus : quand elle accepte, vous voyez le Snapchat et l'Instagram les uns des autres pour vous organiser."));
+        box.append(zone);
         return box;
       }
       async function loadMyTeam() {
@@ -2375,6 +2409,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
           out.push(ob);
         }
         const reloadFoot = async () => { await loadMyTeam(); loadTeams(); };
+        if (ok) out.push(await contactsBox("Foot à 5", reloadFoot));
         out.push(await resultsBox(team, oppsData, reloadFoot));
         out.push(manageBox(team, "Foot à 5", reloadFoot));
         panel.replaceChildren(...out);
@@ -2411,10 +2446,10 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         box.append(tx("h2", "", "Mon inscription · " + cat), nm);
         if (!solo) box.append(memberList(team));
         box.append(tx("p", "cl-team-note", ok ? "Tu es inscrit : tu peux proposer un match aux adversaires ci-dessous." : "Ton inscription est en cours de vérification."));
-        const out = [box];
+        const out = [box]; let oppsP = [];
         if (ok) {
           const ob = tx("div", "cl-team-box"); ob.append(tx("h2", "", "Contre qui jouer · " + cat));
-          const { data: opps, error: e2 } = await SB.rpc("opponents", { p_category: cat });
+          const { data: opps, error: e2 } = await SB.rpc("opponents", { p_category: cat }); oppsP = opps || [];
           if (e2) ob.append(tx("p", "cl-team-note", "Impossible de charger les adversaires pour le moment."));
           else if (!opps || !opps.length) ob.append(tx("p", "cl-team-note", "Aucun adversaire inscrit en " + cat + " pour l'instant. Reviens bientôt : ils apparaîtront ici."));
           else {
@@ -2435,7 +2470,9 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
           }
           out.push(ob);
         }
-        out.push(manageBox(team, cat, async () => { await loadPadelTeams(); loadTeams(); }));
+        const rl = async () => { await loadPadelTeams(); loadTeams(); };
+        if (ok) { out.push(await contactsBox(cat, rl)); out.push(await resultsBox(team, oppsP, rl, cat)); }
+        out.push(manageBox(team, cat, rl));
         return out;
       }
       async function loadPadelTeams() {
