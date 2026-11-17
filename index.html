@@ -835,6 +835,10 @@ body.view-admin .menu > a[href="#admin"]::after { content: ""; position: absolut
 .cl-badge { display: inline-block; padding: 3px 10px; border: 1px solid currentColor; border-radius: 16px; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #ffd24d; }
 .nav-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; margin-left: 6px; border-radius: 9px; background: #E0112B; color: #fff; font-size: 11px; font-weight: 800; line-height: 1; vertical-align: top; box-shadow: 0 0 0 2px rgba(8,45,91,0.9); }
 .nav-badge[hidden] { display: none; }
+.cl-venue { display: flex; flex-direction: column; gap: 4px; margin: 4px 0 22px; padding: 16px 18px; border-left: 4px solid #d4ff2a; background: rgba(4,8,36,0.62); color: #fff; font-size: 14px; line-height: 1.4; }
+.cl-venue-k { font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #d4ff2a; }
+.cl-venue b { font-size: 18px; }
+.cl-venue a { align-self: flex-start; margin-top: 6px; color: #d4ff2a; font-weight: 700; font-size: 13px; }
 .cl-contacts { flex: 1 1 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
 .cl-contact { display: flex; flex-direction: column; gap: 6px; padding: 12px; border: 1px solid rgba(255,255,255,0.18); background: rgba(4,8,36,0.55); }
 .cl-contact b { font-size: 14px; }
@@ -1183,6 +1187,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
       <h1>Pad<span>el</span></h1>
       <div class="cl-sub">Inscription au tournoi</div>
       <p class="cl-lead">Choisis ton tournoi : en 1V1 tu joues seul, en 2V2 tu ajoutes ton coéquipier grâce à l'adresse e-mail de son compte. Ton inscription est validée tout de suite.</p>
+      <div class="cl-venue"><span class="cl-venue-k">Où jouer</span><b>Teams5 Amiens</b><span>25 rue le Tintoret, 80080 Amiens</span><span>Lieu des matchs classés de padel, en 1V1 comme en 2V2 · 2 courts de padel</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Teams5+Amiens+25+rue+le+Tintoret+80080+Amiens" target="_blank" rel="noopener noreferrer">Voir sur la carte</a></div>
       <div class="cl-pending" hidden>
         <p class="cl-lock-title">Compte en attente de validation</p>
         <p>Un administrateur doit valider ton compte avant que tu puisses t'inscrire ou jouer. Reviens bientôt : dès qu'il est validé, tout est de nouveau disponible.</p>
@@ -1219,6 +1224,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
       <div class="cl-eyebrow">UPJV SPORT · Classé</div>
       <h1>Clas<span>sement</span></h1>
       <div class="cl-sub">Padel · victoires et défaites, comme en MMA</div>
+      <div class="cl-venue"><span class="cl-venue-k">Où jouer</span><b>Teams5 Amiens</b><span>25 rue le Tintoret, 80080 Amiens</span><span>Lieu des matchs classés de padel, en 1V1 comme en 2V2 · 2 courts de padel</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Teams5+Amiens+25+rue+le+Tintoret+80080+Amiens" target="_blank" rel="noopener noreferrer">Voir sur la carte</a></div>
       <div class="cl-board" id="board-padel" aria-live="polite"></div>
     </div>
   </section>
@@ -2344,6 +2350,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         const { data, error } = await SB.rpc("my_matches", { p_category: cat }), list = error ? [] : (data || []);
         const box = tx("div", "cl-team-box cl-res"), zone = tx("p", "cl-opp-msg", "");
         box.append(tx("h2", "", "Organiser un match" + (cat === "Foot à 5" ? "" : " · " + cat)));
+        if (cat !== "Foot à 5") box.append(tx("p", "cl-team-note", "Lieu des matchs classés : Teams5 Amiens, 25 rue le Tintoret, 80080 Amiens."));
         const btn = (label, cls, fn) => { const b = tx("button", "cl-btn " + (cls || ""), label); b.type = "button"; b.addEventListener("click", async () => { b.disabled = true; zone.textContent = ""; const { error: er } = await fn(); if (er) { b.disabled = false; zone.textContent = dbError(er); } else reload(); }); return b; };
         const link = (kind, v) => {
           const h = String(v || "").replace(/^@+/, ""); if (!h) return null;
