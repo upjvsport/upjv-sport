@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://upjvsport.github.io/upjv-sport/sitemap.xml
