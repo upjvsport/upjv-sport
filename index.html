@@ -678,7 +678,7 @@ body.view-foot .classe-font .dropbtn::after, body.view-padel .classe-font .dropb
 .cl-status { margin-top: 18px; font-size: 15px; line-height: 1.5; }
 .cl-status.ok { color: #7dffb0; }
 .cl-status.err { color: #ffb0b0; }
-/* Inscriptions Classé réservées aux membres connectés */
+/* Inscriptions en compétition réservées aux membres connectés */
 body:not(.logged-in) .cl-form { display: none; }
 body.logged-in .cl-lock { display: none; }
 .cl-lock { padding: 34px; background: rgba(4, 8, 36, 0.72); border: 1px solid rgba(255,255,255,0.18); backdrop-filter: blur(8px); font-size: 17px; line-height: 1.6; color: #dfe7f5; }
@@ -949,6 +949,37 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
 .legal-box h3 { margin: 24px 0 8px; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: #8fb3e0; }
 .legal-box p { margin-bottom: 10px; font-size: 14px; line-height: 1.6; color: #dfe7f5; }
 .legal-box a { color: white; font-weight: 700; overflow-wrap: anywhere; }
+
+/* ==============================
+   MENU TÉLÉPHONE / TABLETTE (burger)
+   ============================== */
+.burger, .login-m { display: none; }
+.cl-cats.one { grid-template-columns: 1fr; }
+.cond-box { max-width: 560px; margin: 0 0 26px; padding: 16px 20px 16px 18px; border: 1px solid rgba(224,17,43,.55); border-left: 5px solid #E0112B; border-radius: 10px; background: rgba(224,17,43,.13); color: #fff; box-shadow: 0 8px 24px rgba(0,0,0,.28); }
+.cond-box .cond-title { margin: 0 0 8px; font-size: 12px; font-weight: 900; letter-spacing: 1.6px; text-transform: uppercase; color: #ff4560; }
+.cond-box ul { margin: 0; padding: 0; list-style: none; }
+.cond-box li { position: relative; padding-left: 16px; font-size: 14.5px; line-height: 1.5; color: #f1f4fa; }
+.cond-box li + li { margin-top: 6px; }
+.cond-box li::before { content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: #E0112B; }
+.cond-box b { color: #fff; }
+@media (max-width: 1000px) {
+  .menu { display: none; }
+  .burger { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; padding: 0 10px; background: transparent; border: 1px solid rgba(255,255,255,.55); border-radius: 10px; cursor: pointer; }
+  .burger span { display: block; height: 2px; background: #fff; border-radius: 2px; transition: .25s; }
+  .navbar.open .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .navbar.open .burger span:nth-child(2) { opacity: 0; }
+  .navbar.open .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .navbar.open .menu { display: flex; position: absolute; top: 100%; left: 0; right: 0; height: auto; flex-direction: column; align-items: stretch; gap: 0; padding: 6px 6% 20px; max-height: calc(100vh - 82px); max-height: calc(100dvh - 82px); overflow-y: auto; background: rgba(5,16,31,.985); border-bottom: 3px solid var(--red); box-shadow: 0 18px 35px rgba(0,0,0,.45); }
+  .navbar.open .menu > a, .navbar.open .dropbtn { display: block; padding: 15px 4px; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .navbar.open .menu a::after, .navbar.open .menu .dropbtn::after { display: none !important; }
+  .navbar.open .menu > a[hidden] { display: none; }
+  .navbar.open .dropdown { display: block; height: auto; }
+  .navbar.open .dropdown-content { display: block; position: static; min-width: 0; background: transparent; border-top: 0; box-shadow: none; border-radius: 0; padding: 0 0 6px 14px; }
+  .navbar.open .dropdown-content a { padding: 11px 6px; font-size: 14.5px; font-weight: 600; color: #cfd8ea; }
+  .navbar.open .dropdown-content a:hover { padding-left: 6px; background: transparent; color: #fff; }
+  .navbar.open .login-m { display: block; margin-top: 16px; padding: 13px 18px; border-radius: 25px; font-size: 15px; font-weight: 700; cursor: pointer; }
+}
+@media (max-width: 700px) { .navbar.open .menu { max-height: calc(100vh - 70px); max-height: calc(100dvh - 70px); } }
   </style>
 </head>
 
@@ -960,7 +991,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
       <img src="data:image/png;base64,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" alt="Logo UPJV SPORT" class="logo-3d">
     </div>
 
-    <nav class="menu">
+    <nav class="menu" id="main-menu">
       <a href="#accueil">Accueil</a>
 
       <a href="#evenements">Événement</a>
@@ -982,7 +1013,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
 
       <!-- Onglet CLASSE avec sous-menu -->
       <div class="dropdown classe-font">
-        <a href="#classe" class="dropbtn">Classé</a>
+        <a href="#classe" class="dropbtn">Compétition</a>
         <div class="dropdown-content">
           <a href="#classe-foot" class="morisawa-font">Foot</a>
           <a href="#classe-padel" class="morisawa-font">Padel</a>
@@ -991,11 +1022,14 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
 
       <a href="#histoire">Notre Histoire</a>
       <a href="#admin" id="nav-admin" hidden>Admin</a>
+      <button class="login login-m" type="button" data-open="modal-login">Se connecter</button>
     </nav>
 
     <div class="actions">
       <button class="login" type="button" data-open="modal-login">Se connecter</button>
     </div>
+
+    <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-menu"><span></span><span></span><span></span></button>
   </header>
 
 
@@ -1131,16 +1165,16 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
   <section class="hub" id="classe">
     <a href="#accueil" class="back-btn hub-back">Accueil</a>
     <a href="#classe-foot" class="hub-half hub-foot">
-      <div class="hub-eyebrow">UPJV SPORT · Classé</div>
+      <div class="hub-eyebrow">UPJV SPORT · Compétition</div>
       <h2>Football</h2>
       <div class="hub-sub">Inscription des équipes</div>
-      <span class="hub-go">Foot classé</span>
+      <span class="hub-go">Foot compétition</span>
     </a>
     <a href="#classe-padel" class="hub-half hub-padel">
-      <div class="hub-eyebrow">UPJV SPORT · Classé</div>
+      <div class="hub-eyebrow">UPJV SPORT · Compétition</div>
       <h2>Pad<span>el</span></h2>
       <div class="hub-sub">Inscription au tournoi</div>
-      <span class="hub-go">Padel classé</span>
+      <span class="hub-go">Padel compétition</span>
     </a>
   </section>
 
@@ -1157,19 +1191,26 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
 
   <section class="cl" id="classe-foot">
     <div class="cl-inner">
-      <a href="#classe" class="cl-back">Classé</a>
-      <div class="cl-eyebrow">UPJV SPORT · Classé</div>
+      <a href="#classe" class="cl-back">Compétition</a>
+      <div class="cl-eyebrow">UPJV SPORT · Compétition</div>
       <h1>Football</h1>
       <div class="cl-sub">Inscription des équipes</div>
-      <p class="cl-lead">Le classé se joue en foot à 5 : donne le nom de ton équipe et ajoute tes quatre coéquipiers grâce à l'adresse e-mail de leur compte. Tu es le capitaine.</p>
-      <div class="cl-venue big"><div class="cl-venue-logo" role="img" aria-label="Logo Teams5 Amiens"><img src="images/teams5-logo.png" alt="" onerror="this.parentNode.remove()"></div><div class="cl-venue-txt"><span class="cl-venue-k">Où jouer</span><b>Teams5 Amiens</b><span class="cl-venue-addr">25 rue le Tintoret, 80080 Amiens</span><span>Lieu des matchs classés de foot à 5 · 6 terrains en pelouse synthétique</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Teams5+Amiens+25+rue+le+Tintoret+80080+Amiens" target="_blank" rel="noopener noreferrer">Voir sur la carte</a></div></div>
+      <p class="cl-lead">La compétition se joue en foot à 5 : donne le nom de ton équipe et ajoute tes quatre coéquipiers grâce à l'adresse e-mail de leur compte. Tu es le capitaine.</p>
+      <div class="cond-box" role="note" aria-label="Conditions de participation">
+        <p class="cond-title">Conditions de participation</p>
+        <ul>
+          <li>Pour jouer en compétition, venir avec la <b>carte étudiant</b> ou le <b>QR code ENT</b> : au minimum <b>4 joueurs sur 5</b> de l'équipe.</li>
+          <li>Récompense : <b>un ticket pour chaque joueur de l'équipe</b>, utilisable en période creuse comme en heure pleine.</li>
+        </ul>
+      </div>
+      <div class="cl-venue big"><div class="cl-venue-logo" role="img" aria-label="Logo Teams5 Amiens"><img src="images/teams5-logo.png" alt="" onerror="this.parentNode.remove()"></div><div class="cl-venue-txt"><span class="cl-venue-k">Où jouer</span><b>Teams5 Amiens</b><span class="cl-venue-addr">25 rue le Tintoret, 80080 Amiens</span><span>Lieu des matchs de compétition de foot à 5 · 6 terrains en pelouse synthétique</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Teams5+Amiens+25+rue+le+Tintoret+80080+Amiens" target="_blank" rel="noopener noreferrer">Voir sur la carte</a></div></div>
       <div class="cl-pending" hidden>
         <p class="cl-lock-title">Compte en attente de validation</p>
         <p>Un administrateur doit valider ton compte avant que tu puisses t'inscrire ou jouer. Reviens bientôt : dès qu'il est validé, tout est de nouveau disponible.</p>
       </div>
       <div class="cl-lock">
         <p class="cl-lock-title">Réservé aux membres</p>
-        <p>Pour inscrire ton équipe aux matchs classés, crée ton compte ou connecte-toi.</p>
+        <p>Pour inscrire ton équipe aux matchs de compétition, crée ton compte ou connecte-toi.</p>
         <div class="cl-lock-btns"><a href="#" class="cl-submit" data-open="modal-signup">S'inscrire</a><a href="#" class="cl-lock-alt" data-open="modal-login">J'ai déjà un compte</a></div>
       </div>
       <div class="cl-team" id="team-panel" hidden aria-live="polite"></div>
@@ -1180,7 +1221,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         <div class="cl-legend">Tes quatre coéquipiers</div>
         <p class="cl-hint" id="foot-hint">Saisis l'adresse e-mail utilisée par chaque joueur pour créer son compte sur le site. Chacun recevra un e-mail de confirmation.</p>
         <div id="foot-rows"></div>
-        <label class="cl-check"><input type="checkbox" name="prerequis" value="ok" required><span>Je confirme que <b>chaque joueur</b> de l'équipe a déjà joué <b>au moins un match de five</b> (obligatoire pour les matchs classés).</span></label>
+        <label class="cl-check"><input type="checkbox" name="prerequis" value="ok" required><span>Je confirme que <b>chaque joueur</b> de l'équipe a déjà joué <b>au moins un match de five</b> (obligatoire pour les matchs de compétition).</span></label>
         <button type="submit" class="cl-submit">Inscrire mon équipe</button>
         <div class="cl-status" id="foot-status" role="status"></div>
       </form>
@@ -1188,10 +1229,10 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
     </div>
     <div class="cl-inner cl-rank">
       <a href="#classe-foot" class="cl-back">Inscription</a>
-      <div class="cl-eyebrow">UPJV SPORT · Classé</div>
+      <div class="cl-eyebrow">UPJV SPORT · Compétition</div>
       <h1>Classement</h1>
       <div class="cl-sub">Championnat de football · victoire 3 pts · nul 1 pt · défaite 0 pt</div>
-      <div class="cl-venue big"><div class="cl-venue-logo" role="img" aria-label="Logo Teams5 Amiens"><img src="images/teams5-logo.png" alt="" onerror="this.parentNode.remove()"></div><div class="cl-venue-txt"><span class="cl-venue-k">Où jouer</span><b>Teams5 Amiens</b><span class="cl-venue-addr">25 rue le Tintoret, 80080 Amiens</span><span>Lieu des matchs classés de foot à 5 · 6 terrains en pelouse synthétique</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Teams5+Amiens+25+rue+le+Tintoret+80080+Amiens" target="_blank" rel="noopener noreferrer">Voir sur la carte</a></div></div>
+      <div class="cl-venue big"><div class="cl-venue-logo" role="img" aria-label="Logo Teams5 Amiens"><img src="images/teams5-logo.png" alt="" onerror="this.parentNode.remove()"></div><div class="cl-venue-txt"><span class="cl-venue-k">Où jouer</span><b>Teams5 Amiens</b><span class="cl-venue-addr">25 rue le Tintoret, 80080 Amiens</span><span>Lieu des matchs de compétition de foot à 5 · 6 terrains en pelouse synthétique</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Teams5+Amiens+25+rue+le+Tintoret+80080+Amiens" target="_blank" rel="noopener noreferrer">Voir sur la carte</a></div></div>
       <div class="cl-board" id="board-foot" aria-live="polite"></div>
     </div>
   </section>
@@ -1199,29 +1240,35 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
   <!-- CLASSÉ : PADEL -->
   <section class="cl" id="classe-padel">
     <div class="cl-inner">
-      <a href="#classe" class="cl-back">Classé</a>
-      <div class="cl-eyebrow">UPJV SPORT · Classé</div>
+      <a href="#classe" class="cl-back">Compétition</a>
+      <div class="cl-eyebrow">UPJV SPORT · Compétition</div>
       <h1>Pad<span>el</span></h1>
       <div class="cl-sub">Inscription au tournoi</div>
-      <p class="cl-lead">Choisis ton tournoi : en 1V1 tu joues seul, en 2V2 tu ajoutes ton coéquipier grâce à l'adresse e-mail de son compte. Ton inscription est validée tout de suite.</p>
-      <div class="cl-venue big"><div class="cl-venue-logo" role="img" aria-label="Logo Teams5 Amiens"><img src="images/teams5-logo.png" alt="" onerror="this.parentNode.remove()"></div><div class="cl-venue-txt"><span class="cl-venue-k">Où jouer</span><b>Teams5 Amiens</b><span class="cl-venue-addr">25 rue le Tintoret, 80080 Amiens</span><span>Lieu des matchs classés de padel, en 1V1 comme en 2V2 · 2 courts de padel</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Teams5+Amiens+25+rue+le+Tintoret+80080+Amiens" target="_blank" rel="noopener noreferrer">Voir sur la carte</a></div></div>
+      <p class="cl-lead">Inscris ton duo : tu donnes un nom à ton duo et l'adresse e-mail du compte de ton coéquipier. Ton inscription est validée tout de suite.</p>
+      <div class="cond-box" role="note" aria-label="Conditions de participation">
+        <p class="cond-title">Conditions de participation</p>
+        <ul>
+          <li>Padel compétition <b>uniquement en 2V2</b> : les <b>deux joueurs</b> viennent avec la <b>carte étudiant</b> ou le <b>QR code ENT</b>.</li>
+          <li>Récompense : <b>un ticket pour chaque joueur de l'équipe</b>, utilisable en période creuse comme en heure pleine.</li>
+        </ul>
+      </div>
+      <div class="cl-venue big"><div class="cl-venue-logo" role="img" aria-label="Logo Teams5 Amiens"><img src="images/teams5-logo.png" alt="" onerror="this.parentNode.remove()"></div><div class="cl-venue-txt"><span class="cl-venue-k">Où jouer</span><b>Teams5 Amiens</b><span class="cl-venue-addr">25 rue le Tintoret, 80080 Amiens</span><span>Lieu des matchs de compétition de padel, en 2V2 · 2 courts de padel</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Teams5+Amiens+25+rue+le+Tintoret+80080+Amiens" target="_blank" rel="noopener noreferrer">Voir sur la carte</a></div></div>
       <div class="cl-pending" hidden>
         <p class="cl-lock-title">Compte en attente de validation</p>
         <p>Un administrateur doit valider ton compte avant que tu puisses t'inscrire ou jouer. Reviens bientôt : dès qu'il est validé, tout est de nouveau disponible.</p>
       </div>
       <div class="cl-lock">
         <p class="cl-lock-title">Réservé aux membres</p>
-        <p>Pour t'inscrire aux matchs classés, crée ton compte ou connecte-toi.</p>
+        <p>Pour t'inscrire aux matchs de compétition, crée ton compte ou connecte-toi.</p>
         <div class="cl-lock-btns"><a href="#" class="cl-submit" data-open="modal-signup">S'inscrire</a><a href="#" class="cl-lock-alt" data-open="modal-login">J'ai déjà un compte</a></div>
       </div>
       <div class="cl-team" id="padel-panel" hidden aria-live="polite"></div>
       <form class="cl-form" id="form-padel" name="inscription-padel" novalidate>
         <div class="cl-legend">Tournoi</div>
-        <div class="cl-cats two">
-          <label class="cl-card"><input type="radio" name="tournoi" value="1V1"><span class="cl-card-body"><span class="cl-num">1V1</span><span class="cl-lab">1 contre 1</span></span></label>
-          <label class="cl-card"><input type="radio" name="tournoi" value="2V2"><span class="cl-card-body"><span class="cl-num">2V2</span><span class="cl-lab">2 contre 2</span></span></label>
+        <div class="cl-cats one">
+          <label class="cl-card"><input type="radio" name="tournoi" value="2V2" checked><span class="cl-card-body"><span class="cl-num">2V2</span><span class="cl-lab">2 contre 2</span></span></label>
         </div>
-        <p class="cl-hint" id="padel-hint">En 1V1, ton nom de joueur sert de nom d'équipe. En 2V2, tu donnes un nom à ton duo et l'adresse e-mail du compte de ton coéquipier. Tu peux t'inscrire dans les deux tournois.</p>
+        <p class="cl-hint" id="padel-hint">Tu donnes un nom à ton duo et l'adresse e-mail du compte de ton coéquipier.</p>
         <label class="cl-field" id="padel-duo-wrap" hidden>Nom du duo
           <input type="text" id="padel-duo" placeholder="Ex. : Les Smashers" autocomplete="off" maxlength="40">
         </label>
@@ -1230,7 +1277,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
           <p class="cl-hint">Saisis l'adresse e-mail utilisée par ton coéquipier pour créer son compte sur le site. Il recevra un e-mail de confirmation.</p>
           <div class="cl-row mail"><span class="cl-n">2</span><input type="email" id="padel-mate" placeholder="E-mail du compte du joueur 2" autocomplete="off" autocapitalize="none" aria-label="E-mail du coéquipier"></div>
         </div>
-        <label class="cl-check"><input type="checkbox" name="prerequis" value="ok"><span>Je confirme que <b>chaque joueur</b> inscrit a déjà joué <b>au moins un match de padel</b> (obligatoire pour les matchs classés).</span></label>
+        <label class="cl-check"><input type="checkbox" name="prerequis" value="ok"><span>Je confirme que <b>chaque joueur</b> inscrit a déjà joué <b>au moins un match de padel</b> (obligatoire pour les matchs de compétition).</span></label>
         <button type="submit" class="cl-submit">M'inscrire</button>
         <div class="cl-status" id="padel-status" role="status"></div>
       </form>
@@ -1238,10 +1285,10 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
     </div>
     <div class="cl-inner cl-rank">
       <a href="#classe-padel" class="cl-back">Inscription</a>
-      <div class="cl-eyebrow">UPJV SPORT · Classé</div>
+      <div class="cl-eyebrow">UPJV SPORT · Compétition</div>
       <h1>Clas<span>sement</span></h1>
       <div class="cl-sub">Padel · victoires et défaites, comme en MMA</div>
-      <div class="cl-venue big"><div class="cl-venue-logo" role="img" aria-label="Logo Teams5 Amiens"><img src="images/teams5-logo.png" alt="" onerror="this.parentNode.remove()"></div><div class="cl-venue-txt"><span class="cl-venue-k">Où jouer</span><b>Teams5 Amiens</b><span class="cl-venue-addr">25 rue le Tintoret, 80080 Amiens</span><span>Lieu des matchs classés de padel, en 1V1 comme en 2V2 · 2 courts de padel</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Teams5+Amiens+25+rue+le+Tintoret+80080+Amiens" target="_blank" rel="noopener noreferrer">Voir sur la carte</a></div></div>
+      <div class="cl-venue big"><div class="cl-venue-logo" role="img" aria-label="Logo Teams5 Amiens"><img src="images/teams5-logo.png" alt="" onerror="this.parentNode.remove()"></div><div class="cl-venue-txt"><span class="cl-venue-k">Où jouer</span><b>Teams5 Amiens</b><span class="cl-venue-addr">25 rue le Tintoret, 80080 Amiens</span><span>Lieu des matchs de compétition de padel, en 2V2 · 2 courts de padel</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Teams5+Amiens+25+rue+le+Tintoret+80080+Amiens" target="_blank" rel="noopener noreferrer">Voir sur la carte</a></div></div>
       <div class="cl-board" id="board-padel" aria-live="polite"></div>
     </div>
   </section>
@@ -1563,12 +1610,12 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
 
       <div class="legal-pane" id="legal-cgu" hidden>
         <h3>1. Objet</h3>
-        <p>Les présentes conditions encadrent l'utilisation du site UPJV SPORT, qui permet de découvrir des événements sportifs à Amiens, de s'inscrire à des rencontres « Classé » et de trouver des partenaires d'entraînement. En utilisant le site, vous acceptez ces conditions.</p>
+        <p>Les présentes conditions encadrent l'utilisation du site UPJV SPORT, qui permet de découvrir des événements sportifs à Amiens, de s'inscrire à des rencontres de compétition et de trouver des partenaires d'entraînement. En utilisant le site, vous acceptez ces conditions.</p>
         <h3>2. Accès et compte</h3>
-        <p>La consultation du site est gratuite. Certaines fonctions (inscriptions Classé, mise en relation pour s'entraîner à deux) sont réservées aux membres disposant d'un compte. Vous vous engagez à fournir des informations exactes et à garder votre mot de passe confidentiel. Vous êtes responsable de l'usage fait de votre compte.</p>
+        <p>La consultation du site est gratuite. Certaines fonctions (inscriptions en compétition, mise en relation pour s'entraîner à deux) sont réservées aux membres disposant d'un compte. Vous vous engagez à fournir des informations exactes et à garder votre mot de passe confidentiel. Vous êtes responsable de l'usage fait de votre compte.</p>
         <h3>3. Règles de conduite</h3>
         <p>Vous vous engagez à respecter les autres utilisateurs, à ne communiquer que vos propres coordonnées, à ne pas usurper l'identité d'un tiers et à ne pas utiliser le site à des fins commerciales, de harcèlement ou contraires à la loi. Les éditeurs peuvent refuser une inscription, retirer un contenu ou suspendre un compte en cas de manquement.</p>
-        <h3>4. Rencontres « Classé »</h3>
+        <h3>4. Rencontres de compétition</h3>
         <p>Les inscriptions sont validées automatiquement, sous réserve du respect des conditions de participation ; l'équipe UPJV SPORT peut écarter une équipe qui ne les respecte pas. Les conditions de participation indiquées sur chaque page (par exemple avoir déjà disputé au moins un match) doivent être respectées. Les classements sont fournis à titre informatif.</p>
         <h3>5. Mise en relation pour s'entraîner à deux</h3>
         <p>Le formulaire de la page Muscu permet de laisser un pseudo Instagram et/ou Snapchat et, facultativement, un numéro de téléphone. Ces coordonnées ne sont pas affichées publiquement. UPJV SPORT met en relation mais ne vérifie pas l'identité ni le niveau des personnes. Par prudence, donnez rendez-vous dans un lieu public, comme la salle de sport.</p>
@@ -1583,8 +1630,8 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         <p>Walid Fouilah et Valéry Gaotte, éditeurs du site, sont responsables du traitement de vos données personnelles. Contact : <a href="mailto:valery.gaotte@gmail.com">valery.gaotte@gmail.com</a> · <a href="mailto:walidfouilah80@gmail.com">walidfouilah80@gmail.com</a></p>
         <h3>2. Données collectées et finalités</h3>
         <p><strong>Compte :</strong> nom, prénom, adresse e-mail et mot de passe (stocké sous forme chiffrée), pour vous permettre de vous connecter ; identifiant Snapchat et/ou Instagram (au moins un est demandé à l'inscription) et numéro de téléphone (facultatif), pour la mise en relation entre membres. Base légale : exécution du service demandé.</p>
-        <p><strong>Inscriptions Classé :</strong> nom de l'équipe ou du duo, noms et prénoms des joueurs, pour organiser les rencontres et afficher les classements. Base légale : exécution du service demandé.</p>
-        <p><strong>Équipes, résultats et remplacements (Classé) :</strong> les scores annoncés par les capitaines, ainsi que l'état « infirmerie » d'un joueur, sont enregistrés pour calculer le classement. Pour permettre le remplacement d'un joueur blessé ou indisponible, les membres d'une équipe concernée peuvent consulter les prénoms et noms des membres du site qui ne sont pas encore inscrits dans le classé. Quand une équipe accepte une proposition de match, les joueurs des deux équipes peuvent voir le Snapchat et l'Instagram des joueurs adverses (uniquement ceux du match) pour s'organiser. Les adresses e-mail des coéquipiers saisies à l'inscription servent uniquement à les retrouver et à les prévenir. Base légale : exécution du service demandé.</p>
+        <p><strong>Inscriptions en compétition :</strong> nom de l'équipe ou du duo, noms et prénoms des joueurs, pour organiser les rencontres et afficher les classements. Base légale : exécution du service demandé.</p>
+        <p><strong>Équipes, résultats et remplacements (Compétition) :</strong> les scores annoncés par les capitaines, ainsi que l'état « infirmerie » d'un joueur, sont enregistrés pour calculer le classement. Pour permettre le remplacement d'un joueur blessé ou indisponible, les membres d'une équipe concernée peuvent consulter les prénoms et noms des membres du site qui ne sont pas encore inscrits dans la compétition. Quand une équipe accepte une proposition de match, les joueurs des deux équipes peuvent voir le Snapchat et l'Instagram des joueurs adverses (uniquement ceux du match) pour s'organiser. Les adresses e-mail des coéquipiers saisies à l'inscription servent uniquement à les retrouver et à les prévenir. Base légale : exécution du service demandé.</p>
         <p><strong>Administration :</strong> les organisateurs du site (Walid Fouilah et Valéry Gaotte) ont accès, via un espace réservé, aux comptes (prénom, nom, adresse e-mail), aux inscriptions et aux résultats, afin de corriger une inscription, trancher une contestation ou répondre à une demande. Cet espace est protégé : seuls les comptes organisateurs y accèdent. Un organisateur peut supprimer un compte. Lorsque la suppression est décidée par l'organisation, l'adresse e-mail concernée est conservée dans une liste de contrôle afin que tout nouveau compte créé avec cette adresse soit validé par un organisateur avant de pouvoir s'inscrire ; une suppression « sans motif » ne conserve aucune adresse.</p>
         <p><strong>Mise en relation (Muscu) :</strong> prénom ou pseudo, identifiant Instagram et/ou Snapchat, numéro de téléphone (facultatif) et salle souhaitée, pour vous mettre en relation avec un partenaire d'entraînement. Base légale : votre consentement, donné en cochant la case du formulaire. Vous pouvez le retirer à tout moment.</p>
         <h3>3. Destinataires et sous-traitants</h3>
@@ -1667,6 +1714,17 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
       if (view !== "home") window.scrollTo(0, 0);
       else if (id) { const t = document.getElementById(id); if (t) t.scrollIntoView(); }
     }
+    // Menu burger (téléphone / tablette)
+    (function () {
+      const nb = document.querySelector(".navbar"), bg = document.getElementById("burger");
+      if (!nb || !bg) return;
+      const setOpen = (o) => { nb.classList.toggle("open", o); bg.setAttribute("aria-expanded", String(o)); bg.setAttribute("aria-label", o ? "Fermer le menu" : "Ouvrir le menu"); };
+      bg.addEventListener("click", () => setOpen(!nb.classList.contains("open")));
+      nb.querySelector(".menu").addEventListener("click", (e) => { if (e.target.closest("a, .login-m")) setOpen(false); });
+      window.addEventListener("hashchange", () => setOpen(false));
+      window.addEventListener("resize", () => { if (window.innerWidth > 1000) setOpen(false); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
+    })();
     function route() { show(location.hash.slice(1)); }
     window.addEventListener("hashchange", route);
     window.addEventListener("popstate", route); // flèches Précédent / Suivant du navigateur
@@ -1976,14 +2034,14 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
 
       // En-tête et bouton d'accueil selon l'état de connexion
       function showUser(user) {
-        const btn = document.querySelector(".actions .login"), hero = document.querySelector(".hero-buttons .btn-primary");
+        const btns = document.querySelectorAll(".navbar .login"), hero = document.querySelector(".hero-buttons .btn-primary");
         const meta = (user && user.user_metadata) || {};
         window.UPJV_USER = user || null;
         document.body.classList.toggle("logged-in", !!user);
         document.dispatchEvent(new CustomEvent("upjv-auth"));
         document.querySelectorAll(".cl-account").forEach((i) => { i.value = user ? user.email : ""; });
         if (user) {
-          btn.textContent = "Mon compte" + (meta.prenom ? " · " + meta.prenom : ""); btn.dataset.open = "modal-account";
+          btns.forEach((btn) => { btn.textContent = "Mon compte" + (meta.prenom ? " · " + meta.prenom : ""); btn.dataset.open = "modal-account"; });
           if (hero) { hero.textContent = "Mon compte"; hero.dataset.open = "modal-account"; }
           document.getElementById("account-name").textContent = [meta.prenom, meta.nom].filter(Boolean).join(" ") || "—";
           document.getElementById("account-email").textContent = user.email || "";
@@ -1991,7 +2049,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
             document.getElementById("account-" + k).textContent = v || ""; document.getElementById("account-" + k + "-line").hidden = !v;
           });
         } else {
-          btn.textContent = "Se connecter"; btn.dataset.open = "modal-login";
+          btns.forEach((btn) => { btn.textContent = "Se connecter"; btn.dataset.open = "modal-login"; });
           if (hero) { hero.textContent = "S'inscrire"; hero.dataset.open = "modal-signup"; }
         }
       }
@@ -2075,7 +2133,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
       });
     })();
 
-    // Formulaires d'inscription (Classé). Ils s'envoient via Netlify Forms une fois le site publié sur Netlify.
+    // Formulaires d'inscription (Compétition). Ils s'envoient via Netlify Forms une fois le site publié sur Netlify.
     (function () {
       const $ = (id) => document.getElementById(id);
       function row(n, label) {
@@ -2184,7 +2242,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
             const arr = (v) => (Array.isArray(v) ? v : []);
             teams = { foot: arr(d.foot), padel: arr(d.padel), matchs_foot: arr(d.matchs_foot), matchs_padel: arr(d.matchs_padel) };
             break;
-          } catch (e) { console.warn("[UPJV SPORT · Classé] Lecture impossible : " + url, e); }
+          } catch (e) { console.warn("[UPJV SPORT · Compétition] Lecture impossible : " + url, e); }
         }
         if (window.UPJV_SB) {
           try {
@@ -2201,7 +2259,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
               const { data: pr } = await window.UPJV_SB.rpc("public_results", { p_category: c });
               (pr || []).forEach((r) => teams.matchs_padel.push({ tournoi: c, domicile: r.home, exterieur: r.away, score: [r.score_home, r.score_away] }));
             }
-          } catch (e) { console.warn("[UPJV SPORT · Classé] Équipes validées indisponibles", e); }
+          } catch (e) { console.warn("[UPJV SPORT · Compétition] Équipes validées indisponibles", e); }
         }
         board("foot"); board("padel");
       }
@@ -2301,7 +2359,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
             sub.append(q, table); zone.replaceChildren(sub);
           }));
         }
-        row.append(btn("Quitter le classé", "danger", () => {
+        row.append(btn("Quitter la compétition", "danger", () => {
           const sub = tx("div", "cl-mpop warn"), r2 = tx("div", "cl-mrow");
           sub.append(tx("h2", "", "Attention"));
           sub.append(tx("p", "cl-team-note", solo
@@ -2355,7 +2413,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
             const { data: d, error: e1 } = await SB.rpc("submit_result", { p_opp: sel.value, p_mine: parseInt(a.value, 10), p_theirs: parseInt(b2.value, 10), p_category: cat });
             if (e1) return e1;
             const { error: e2 } = await SB.functions.invoke("send-team-mails", { body: { type: "result", result_id: d.result_id } });
-            if (e2) console.warn("[Classé] e-mail non envoyé", e2);
+            if (e2) console.warn("[Compétition] e-mail non envoyé", e2);
             return null;
           });
           box.append(tx("p", "cl-team-note", (padel ? "Tu as joué un match ? Entre les sets gagnés de chaque côté (pas d'égalité) : l'adversaire confirme par e-mail." : "Tu as joué un match ? Entre le score : le capitaine adverse le confirme par e-mail.")), form, go, zone);
@@ -2367,7 +2425,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         const { data, error } = await SB.rpc("my_matches", { p_category: cat }), list = error ? [] : (data || []);
         const box = tx("div", "cl-team-box cl-res"), zone = tx("p", "cl-opp-msg", "");
         box.append(tx("h2", "", "Organiser un match" + (cat === "Foot à 5" ? "" : " · " + cat)));
-        if (cat !== "Foot à 5") box.append(tx("p", "cl-team-note", "Lieu des matchs classés : Teams5 Amiens, 25 rue le Tintoret, 80080 Amiens."));
+        if (cat !== "Foot à 5") box.append(tx("p", "cl-team-note", "Lieu des matchs de compétition : Teams5 Amiens, 25 rue le Tintoret, 80080 Amiens."));
         const btn = (label, cls, fn) => { const b = tx("button", "cl-btn " + (cls || ""), label); b.type = "button"; b.addEventListener("click", async () => { b.disabled = true; zone.textContent = ""; const { error: er } = await fn(); if (er) { b.disabled = false; zone.textContent = dbError(er); } else reload(); }); return b; };
         const link = (kind, v) => {
           const h = String(v || "").replace(/^@+/, ""); if (!h) return null;
@@ -2403,7 +2461,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
       async function loadMyTeam() {
         if (!SB || !window.UPJV_USER) { panel.hidden = true; ff.hidden = false; return; }
         const { data: team, error } = await SB.rpc("my_team");
-        if (error) { panel.hidden = true; ff.hidden = false; console.warn("[Classé] my_team", error); return; }
+        if (error) { panel.hidden = true; ff.hidden = false; console.warn("[Compétition] my_team", error); return; }
         if (!team) { panel.hidden = true; ff.hidden = false; return; }
         ff.hidden = true; panel.hidden = false;
         const ok = team.status === "validated";
@@ -2448,23 +2506,24 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         if (name.length < 2) return say2(fs, "err", "Donne un nom à ton équipe (2 caractères minimum).");
         if (emails.some((m) => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m))) return say2(fs, "err", "Vérifie les quatre adresses e-mail de tes coéquipiers.");
         if (new Set(emails.map((m) => m.toLowerCase())).size < 4) return say2(fs, "err", "Chaque coéquipier doit avoir une adresse différente.");
-        if (!ff.prerequis.checked) return say2(fs, "err", "Pour jouer en classé, chaque joueur doit avoir déjà fait au moins un match de five : coche la case de confirmation.");
+        if (!ff.prerequis.checked) return say2(fs, "err", "Pour jouer en compétition, chaque joueur doit avoir déjà fait au moins un match de five : coche la case de confirmation.");
         const btn = ff.querySelector(".cl-submit"); btn.disabled = true; say2(fs, "", "Inscription en cours…");
         const { data, error } = await SB.rpc("register_team", { p_name: name, p_emails: emails });
         if (error) { btn.disabled = false; return say2(fs, "err", dbError(error)); }
         const { error: mailErr } = await SB.functions.invoke("send-team-mails", { body: { type: "registered", team_id: data.team_id } });
         btn.disabled = false; ff.reset();
         await loadMyTeam();
-        if (mailErr) console.warn("[Classé] e-mails non envoyés", mailErr);
+        if (mailErr) console.warn("[Compétition] e-mails non envoyés", mailErr);
       });
 
       // PADEL : 1V1 (joueur seul) et 2V2 (duo). Mêmes comptes, mêmes e-mails et mêmes propositions de match que le foot.
-      const pf = $("form-padel"), pst = $("padel-status"), ppanel = $("padel-panel"), PCATS = ["1V1", "2V2"];
+      const pf = $("form-padel"), pst = $("padel-status"), ppanel = $("padel-panel"), PCATS = ["2V2"];
       const pradio = (v) => pf.querySelector('input[name="tournoi"][value="' + v + '"]');
       function padelMode(mode) {
         $("padel-duo-wrap").hidden = mode !== "2V2"; $("padel-mate-wrap").hidden = mode !== "2V2";
       }
       pf.querySelectorAll('input[name="tournoi"]').forEach((i) => i.addEventListener("change", () => padelMode(i.value)));
+      padelMode("2V2"); pf.addEventListener("reset", () => setTimeout(() => { const r = pradio("2V2"); if (r) r.checked = true; padelMode("2V2"); }, 0));
       async function padelNodes(team, cat) {
         const solo = cat === "1V1", ok = team.status === "validated";
         const box = tx("div", "cl-team-box"), nm = tx("p", "cl-team-name", team.name);
@@ -2506,7 +2565,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         const out = []; let free = 0;
         for (const cat of PCATS) {
           const { data: team, error } = await SB.rpc("my_team", { p_category: cat }), radio = pradio(cat);
-          if (error) console.warn("[Classé] my_team " + cat, error);
+          if (error) console.warn("[Compétition] my_team " + cat, error);
           if (error || !team) { radio.disabled = false; free++; continue; }
           radio.disabled = true; if (radio.checked) { radio.checked = false; padelMode(""); }
           out.push(...(await padelNodes(team, cat)));
@@ -2518,7 +2577,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         e.preventDefault();
         const checked = pf.querySelector('input[name="tournoi"]:checked'), mode = checked && checked.value;
         if (!SB || !window.UPJV_USER) return say2(pst, "err", "Connecte-toi pour t'inscrire.");
-        if (!mode) return say2(pst, "err", "Choisis un tournoi : 1V1 ou 2V2.");
+        if (!mode) return say2(pst, "err", "Choisis le tournoi 2V2.");
         let name = "", emails = [];
         if (mode === "2V2") {
           name = $("padel-duo").value.trim(); const mate = $("padel-mate").value.trim();
@@ -2526,14 +2585,14 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
           if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mate)) return say2(pst, "err", "Vérifie l'adresse e-mail de ton coéquipier.");
           emails = [mate];
         }
-        if (!pf.prerequis.checked) return say2(pst, "err", "Pour jouer en classé, chaque joueur doit avoir déjà fait au moins un match de padel : coche la case de confirmation.");
+        if (!pf.prerequis.checked) return say2(pst, "err", "Pour jouer en compétition, chaque joueur doit avoir déjà fait au moins un match de padel : coche la case de confirmation.");
         const btn = pf.querySelector(".cl-submit"); btn.disabled = true; say2(pst, "", "Inscription en cours…");
         const { data, error } = await SB.rpc("register_team", { p_name: name, p_emails: emails, p_category: mode });
         if (error) { btn.disabled = false; return say2(pst, "err", dbError(error)); }
         const { error: mailErr } = await SB.functions.invoke("send-team-mails", { body: { type: "registered", team_id: data.team_id } });
         btn.disabled = false; pf.reset(); padelMode(""); say2(pst, "", "");
         await loadPadelTeams(); loadTeams();
-        if (mailErr) console.warn("[Classé] e-mails non envoyés", mailErr);
+        if (mailErr) console.warn("[Compétition] e-mails non envoyés", mailErr);
       });
 
       // ADMIN : réservé aux comptes de la table « admins » (contrôlé par la base, pas seulement par ce bouton)
@@ -2651,7 +2710,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
 (function () {
   const VENUES = {"basket": [{"n": "Parc du Grand Marais", "a": "Rue du Grand Marais, 80000 Amiens", "c": "Terrain de street basket.", "acc": "Gratuit"}, {"n": "Parc Saint-Pierre", "a": "Boulevard Beauvillé, 80000 Amiens", "c": "Terrain de basketball en accès libre.", "acc": "Gratuit"}], "padel": [{"n": "Teams5 Amiens", "a": "25 rue le Tintoret, 80080 Amiens", "c": "2 courts de padel en 2 contre 2, dans un complexe indoor. Réservation par téléphone : 03 75 14 01 30.", "acc": "Payant"}, {"n": "Amiens Padel", "a": "1 chemin du Grand Riez, 80330 Cagny", "c": "Environ 7,50 à 14 € par personne pour 1 h 30.", "acc": "Payant"}, {"n": "Amiens Athletic Club", "a": "10 allée des Tennis, 80000 Amiens", "c": "Réservation ou abonnement.", "acc": "Payant"}, {"n": "Tennis Club Amiens Métropole", "a": "37 chemin de Vauvoix, 80000 Amiens", "c": "Réservation ou abonnement.", "acc": "Payant"}, {"n": "Complexe rue de Sully", "a": "75 rue de Sully, 80000 Amiens", "c": "Réservation.", "acc": "Payant"}], "tennis": [{"n": "Amiens Athletic Club", "a": "10 allée des Tennis, 80000 Amiens", "c": "Cotisation ou réservation.", "acc": "Payant"}, {"n": "Tennis Club Amiens Métropole", "a": "37 chemin de Vauvoix, 80000 Amiens", "c": "Cotisation ou réservation.", "acc": "Payant"}], "course": [{"n": "Parc Saint-Pierre", "a": "Boulevard Beauvillé, 80000 Amiens", "c": "Accès libre.", "acc": "Gratuit"}, {"n": "Parc de la Hotoie", "a": "Allée du 51e Régiment, 80000 Amiens", "c": "Accès libre.", "acc": "Gratuit"}, {"n": "Chemin de halage", "a": "Chemin de halage, 80000 Amiens", "c": "Accès libre.", "acc": "Gratuit"}, {"n": "Parc du Grand Marais", "a": "Rue du Grand Marais, 80000 Amiens", "c": "Accès libre.", "acc": "Gratuit"}], "street-workout": [{"n": "Parc du Grand Marais", "a": "Rue du Grand Marais, 80000 Amiens", "c": "Accès libre.", "acc": "Gratuit"}], "natation": [{"n": "Piscine du Coliseum", "a": "27 rue Caumartin, 80000 Amiens", "c": "Environ 3,90 à 5,10 €.", "acc": "Payant"}, {"n": "Aquapôle", "a": "50 rue Alexandre-Dumas, 80090 Amiens", "c": "Environ 4,70 à 6,40 €.", "acc": "Payant"}], "volley": [{"n": "Amiens Métropole Volley Ball", "a": "Gymnase de la Paix, avenue de la Paix, 80080 Amiens", "c": "Cotisation annuelle.", "acc": "Payant"}], "badminton": [{"n": "AUC Badminton", "a": "Gymnase Auguste-Janvier, rue Just-Haüy, 80000 Amiens", "c": "Cotisation.", "acc": "Payant"}, {"n": "ASPTT Badminton", "a": "400 rue Colbert, 80000 Amiens", "c": "Cotisation.", "acc": "Payant"}, {"n": "Multiball", "a": "51 rue de Sully, 80000 Amiens", "c": "Réservation.", "acc": "Payant"}], "ping-pong": [{"n": "Amiens Sport Tennis de Table", "a": "304 rue Gauthier-de-Rumilly, 80000 Amiens", "c": "Cotisation.", "acc": "Payant"}, {"n": "Léo Lagrange Tennis de Table", "a": "400 rue Colbert, 80000 Amiens", "c": "Cotisation.", "acc": "Payant"}, {"n": "Multiball", "a": "51 rue de Sully, 80000 Amiens", "c": "Réservation.", "acc": "Payant"}], "combat": [{"n": "Amiens SC Boxe", "a": "Avenue du Languedoc, 80000 Amiens", "c": "Inscription.", "acc": "Payant", "d": "Boxe"}, {"n": "Amiens Somme Club Judo", "a": "27 rue Caumartin, 80000 Amiens", "c": "Cotisation.", "acc": "Payant", "d": "Judo"}, {"n": "Dojo régional", "a": "2 rue Lescouvé, 80000 Amiens", "c": "Inscription auprès du club.", "acc": "Payant", "d": "Judo / Jujitsu"}, {"n": "Budosport 80", "a": "2 rue des Archers, 80000 Amiens", "c": "Cotisation.", "acc": "Payant", "d": "Judo / Jujitsu"}], "autres-more": [{"n": "Coliseum", "a": "27 rue Caumartin, 80000 Amiens", "c": "Environ 4,80 à 6,10 €, hors patins.", "acc": "Payant", "d": "Patinage"}, {"n": "Parc du Grand Marais", "a": "Rue du Grand Marais, 80000 Amiens", "c": "Skatepark public.", "acc": "Gratuit", "d": "Skateboard"}, {"n": "Chemin de halage", "a": "Chemin de halage, 80000 Amiens", "c": "Accès libre.", "acc": "Gratuit", "d": "Vélo"}, {"n": "Multiball", "a": "51 rue de Sully, 80000 Amiens", "c": "Dès 14 € pour 45 min environ.", "acc": "Payant", "d": "Squash"}]};
   const PIN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
-  const CTA = { padel: ["#classe-padel", "Jouer en classé au padel"] };
+  const CTA = { padel: ["#classe-padel", "Jouer en compétition au padel"] };
   const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
   const plural = (n, w) => n + " " + w + (n > 1 ? "s" : "");
   function summary(n, free) {
@@ -2726,7 +2785,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
   const fv = document.getElementById("foot-venues");
   if (fv) {
     fv.append(el("p", "venue-note", NOTE));
-    const c = el("a", "venue-cta", "Jouer en classé au foot à 5"); c.href = "#classe-foot"; fv.append(c);
+    const c = el("a", "venue-cta", "Jouer en compétition au foot à 5"); c.href = "#classe-foot"; fv.append(c);
   }
 
   // Compteurs sur les carrés (Sport, Foot, Autres sports)
