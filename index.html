@@ -980,6 +980,24 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
   .navbar.open .login-m { display: block; margin-top: 16px; padding: 13px 18px; border-radius: 25px; font-size: 15px; font-weight: 700; cursor: pointer; }
 }
 @media (max-width: 700px) { .navbar.open .menu { max-height: calc(100vh - 70px); max-height: calc(100dvh - 70px); } }
+
+.upc { position: absolute; left: 50%; bottom: 32px; transform: translateX(-50%); z-index: 6; width: min(460px, calc(100% - 32px)); max-height: 60vh; overflow-y: auto; padding: 16px 18px; border-radius: 12px; border-left: 5px solid #E0112B; background: rgba(5,16,31,.94); color: #fff; font-family: Arial, Helvetica, sans-serif; box-shadow: 0 16px 40px rgba(0,0,0,.5); }
+.upc[hidden] { display: none; }
+.upc-title { margin: 0 0 10px; font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: #ff4560; }
+.upc-item + .upc-item { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.14); }
+.upc-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.upc-row b { display: block; font-size: 16px; }
+.upc-row small { color: #aeb9d0; font-size: 12px; letter-spacing: .5px; text-transform: uppercase; }
+.upc-btn { flex: none; padding: 8px 14px; border: 1px solid #fff; border-radius: 20px; background: transparent; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; }
+.upc-btn:hover, .upc-btn[aria-expanded="true"] { background: #fff; color: #082d5b; }
+.upc-contacts { margin-top: 10px; display: grid; gap: 8px; }
+.upc-contacts[hidden] { display: none; }
+.upc-who { padding: 10px 12px; border-radius: 8px; background: rgba(255,255,255,.07); font-size: 14px; }
+.upc-who b { display: block; margin-bottom: 4px; }
+.upc-who a { display: inline-block; margin: 2px 12px 0 0; color: #fff; font-weight: 700; text-decoration: underline; }
+.upc-who small { color: #aeb9d0; }
+.signup-note { margin: 4px 0 2px; padding: 10px 12px; border-left: 4px solid #E0112B; border-radius: 6px; background: rgba(224,17,43,.12); font-size: 13px; line-height: 1.45; }
+@media (max-width: 800px) { .upc { position: fixed; bottom: 12px; } }
   </style>
 </head>
 
@@ -1047,6 +1065,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
       <label>Instagram<input name="instagram" type="text" autocomplete="off" autocapitalize="none" placeholder="@ton_pseudo" maxlength="40" data-optional></label>
       <p class="modal-hint">Indique au moins un des deux réseaux. Ils servent à la mise en relation entre membres.</p>
       <label>Téléphone (facultatif)<input name="telephone" type="tel" autocomplete="tel" placeholder="06 12 34 56 78" maxlength="20" data-optional></label>
+      <p class="signup-note"><b>Important :</b> après ton inscription, tu reçois un e-mail. Tu dois cliquer sur le lien qu'il contient pour confirmer ton inscription, sinon tu ne pourras pas te connecter.</p>
       <button type="submit" class="modal-submit">Créer mon compte</button>
       <p class="modal-status" role="status"></p>
       <p class="modal-switch">Déjà inscrit ? <a href="#" data-open="modal-login">Se connecter</a></p>
@@ -1176,6 +1195,10 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
       <div class="hub-sub">Inscription au tournoi</div>
       <span class="hub-go">Padel compétition</span>
     </a>
+    <aside class="upc" id="upcoming" aria-label="Match à venir" hidden>
+      <p class="upc-title">Match à venir</p>
+      <div class="upc-list" id="upcoming-list"></div>
+    </aside>
   </section>
 
   <!-- CLASSÉ : FOOT -->
@@ -1222,6 +1245,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         <p class="cl-hint" id="foot-hint">Saisis l'adresse e-mail utilisée par chaque joueur pour créer son compte sur le site. Chacun recevra un e-mail de confirmation.</p>
         <div id="foot-rows"></div>
         <label class="cl-check"><input type="checkbox" name="prerequis" value="ok" required><span>Je confirme que <b>chaque joueur</b> de l'équipe a déjà joué <b>au moins un match de five</b> (obligatoire pour les matchs de compétition).</span></label>
+        <p class="signup-note"><b>Important :</b> pour que l'inscription soit confirmée, chaque joueur doit accepter le lien reçu par e-mail.</p>
         <button type="submit" class="cl-submit">Inscrire mon équipe</button>
         <div class="cl-status" id="foot-status" role="status"></div>
       </form>
@@ -1278,6 +1302,7 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
           <div class="cl-row mail"><span class="cl-n">2</span><input type="email" id="padel-mate" placeholder="E-mail du compte du joueur 2" autocomplete="off" autocapitalize="none" aria-label="E-mail du coéquipier"></div>
         </div>
         <label class="cl-check"><input type="checkbox" name="prerequis" value="ok"><span>Je confirme que <b>chaque joueur</b> inscrit a déjà joué <b>au moins un match de padel</b> (obligatoire pour les matchs de compétition).</span></label>
+        <p class="signup-note"><b>Important :</b> pour que l'inscription soit confirmée, chaque joueur doit accepter le lien reçu par e-mail.</p>
         <button type="submit" class="cl-submit">M'inscrire</button>
         <div class="cl-status" id="padel-status" role="status"></div>
       </form>
@@ -2676,6 +2701,45 @@ body.acct-pending #form-foot, body.acct-pending #form-padel { display: none !imp
         document.querySelectorAll(".cl-pending").forEach((e) => { e.hidden = !p; });
       }
       document.addEventListener("upjv-auth", loadPending); loadPending();
+    })();
+
+    // MATCH À VENIR : matchs acceptés par les deux équipes, avec les contacts des joueurs adverses (page Compétition)
+    (function () {
+      const SB = window.UPJV_SB, box = document.getElementById("upcoming"), list = document.getElementById("upcoming-list");
+      if (!box || !list) return;
+      const tx = (tag, cls, t) => { const e = document.createElement(tag); if (cls) e.className = cls; if (t != null) e.textContent = t; return e; };
+      const social = (kind, v) => {
+        const h = String(v || "").replace(/^@+/, ""); if (!h) return null;
+        const a = document.createElement("a"); a.target = "_blank"; a.rel = "noopener noreferrer";
+        a.href = kind === "snap" ? "https://www.snapchat.com/add/" + encodeURIComponent(h) : "https://www.instagram.com/" + encodeURIComponent(h) + "/";
+        a.textContent = (kind === "snap" ? "Snapchat · " : "Instagram · ") + h; return a;
+      };
+      async function loadUpcoming() {
+        if (!SB || !window.UPJV_USER) { box.hidden = true; list.replaceChildren(); return; }
+        const items = [];
+        for (const cat of ["Foot à 5", "2V2"]) {
+          const { data, error } = await SB.rpc("my_matches", { p_category: cat });
+          if (!error) (data || []).filter((r) => r.status === "accepted").forEach((r) => items.push({ cat, r }));
+        }
+        list.replaceChildren();
+        items.forEach(({ cat, r }, i) => {
+          const it = tx("div", "upc-item"), row = tx("div", "upc-row"), t = tx("div"), ct = tx("div", "upc-contacts");
+          ct.id = "upc-c" + i; ct.hidden = true;
+          t.append(tx("small", "", cat === "2V2" ? "Padel 2V2" : "Foot à 5"), tx("b", "", "contre " + r.other));
+          const b = tx("button", "upc-btn", "Contacts"); b.type = "button"; b.setAttribute("aria-expanded", "false"); b.setAttribute("aria-controls", ct.id);
+          b.addEventListener("click", () => { ct.hidden = !ct.hidden; b.setAttribute("aria-expanded", String(!ct.hidden)); });
+          (r.members || []).forEach((m) => {
+            const w = tx("div", "upc-who"); w.append(tx("b", "", (m.prenom + " " + (m.nom || "").toUpperCase()).trim() + (m.captain ? " · capitaine" : "")));
+            const a1 = social("snap", m.snapchat), a2 = social("insta", m.instagram);
+            if (a1) w.append(a1); if (a2) w.append(a2); if (!a1 && !a2) w.append(tx("small", "", "Aucun réseau renseigné."));
+            ct.append(w);
+          });
+          row.append(t, b); it.append(row, ct); list.append(it);
+        });
+        box.hidden = !items.length;
+      }
+      document.addEventListener("upjv-auth", loadUpcoming); window.addEventListener("hashchange", () => { if (location.hash === "#classe") loadUpcoming(); });
+      loadUpcoming();
     })();
   </script>
 
