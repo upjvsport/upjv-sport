@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-19T14:25:02.857228+00:00",
+  "updated_at": "2026-11-22T13:20:02.394206+00:00",
   "sources": {
     "Gothiques d'Amiens": {
       "ok": true,
@@ -15,17 +15,6 @@
   },
   "avertissements": [],
   "evenements": [
-    {
-      "id": "gothiques-10",
-      "club": "Gothiques d'Amiens",
-      "match": "Gothiques d'Amiens - Anglet",
-      "adversaire": "Anglet",
-      "date": "2026-11-20T20:15:00+01:00",
-      "lieu": "Coliseum, Amiens",
-      "billetterie": "https://billetterie.lesgothiques.com/fr/evenement/10/details",
-      "source": "https://billetterie.lesgothiques.com/fr/evenement/10/details",
-      "statut": "billetterie détectée"
-    },
     {
       "id": "gothiques-11",
       "club": "Gothiques d'Amiens",
@@ -68,6 +57,17 @@
       "lieu": "Coliseum, Amiens",
       "billetterie": "https://billetterie.lesgothiques.com/fr/evenement/14/details",
       "source": "https://billetterie.lesgothiques.com/fr/evenement/14/details",
+      "statut": "billetterie détectée"
+    },
+    {
+      "id": "gothiques-15",
+      "club": "Gothiques d'Amiens",
+      "match": "Gothiques d'Amiens - Chamonix Mont-Blanc",
+      "adversaire": "Chamonix Mont-Blanc",
+      "date": "2026-12-30T20:15:00+01:00",
+      "lieu": "Coliseum, Amiens",
+      "billetterie": "https://billetterie.lesgothiques.com/fr/evenement/15/details",
+      "source": "https://billetterie.lesgothiques.com/fr/evenement/15/details",
       "statut": "billetterie détectée"
     }
   ]
